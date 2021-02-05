@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="81px" height="80px" viewBox="0 0 81 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Kategori 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="80" height="80" rx="8"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Start-Screen" transform="translate(-256.000000, -452.000000)">
+            <g id="Kategori-6" transform="translate(256.000000, 452.000000)">
+                <g id="Oval" transform="translate(0.250000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#FFFFFF" xlink:href="#path-1"></use>
+                </g>
+                <g id="tempat-tidur" transform="translate(9.750000, 9.500000)">
+                    <circle id="Oval" fill="#E7F3F0" cx="30.5" cy="31" r="30"></circle>
+                    <rect id="Rectangle" stroke="#414141" stroke-width="2" fill="#D8A06F" x="4.75" y="37" width="50" height="16"></rect>
+                    <rect id="Rectangle" stroke="#414141" stroke-width="2" fill="#D8A06F" x="1.53027851" y="16.3666016" width="4" height="43" rx="2"></rect>
+                    <rect id="Rectangle" stroke="#414141" stroke-width="2" fill="#D8A06F" x="54.4666186" y="16" width="4" height="43" rx="2"></rect>
+                    <rect id="Rectangle" fill="#FFC695" x="8" y="40" width="44" height="10" rx="5"></rect>
+                    <path d="M38.5,49.5 L38.5,49.5 C38.5,49.2238576 38.7238576,49 39,49 L47,49 C49.209139,49 51,47.209139 51,45 C51,42.790861 49.209139,41 47,41 L13,41 C10.790861,41 9,42.790861 9,45 C9,47.209139 10.790861,49 13,49 L35.5,49 C35.7761424,49 36,49.2238576 36,49.5 L36,49.5 C36,49.7761424 35.7761424,50 35.5,50 L13,50 C10.2385763,50 8,47.7614237 8,45 C8,42.2385763 10.2385763,40 13,40 L47,40 C49.7614237,40 52,42.2385763 52,45 C52,47.7614237 49.7614237,50 47,50 L39,50 C38.7238576,50 38.5,49.7761424 38.5,49.5 Z" id="Path" fill="#414141" fill-rule="nonzero"></path>
+                    <path d="M5.5,22.9656009 L54.5,22.9656009" id="Line" stroke="#414141" stroke-width="2" stroke-linecap="square"></path>
+                    <path d="M11.5459452,23.5 L11.5459452,36" id="Line-2" stroke="#414141" stroke-width="2" stroke-linecap="square"></path>
+                    <path d="M20.5232536,23.5 L20.5232536,36" id="Line-2" stroke="#414141" stroke-width="2" stroke-linecap="square"></path>
+                    <path d="M30.5,23.4656009 L30.5,35.9656009" id="Line-2" stroke="#414141" stroke-width="2" stroke-linecap="square"></path>
+                    <path d="M40.5,23.4656009 L40.5,35.9656009" id="Line-2" stroke="#414141" stroke-width="2" stroke-linecap="square"></path>
+                    <path d="M48.4898722,23.5 L48.4898722,36" id="Line-2" stroke="#414141" stroke-width="2" stroke-linecap="square"></path>
+                    <path d="M25.5,45 L35.1980774,45" id="Line-3" stroke="#414141" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M20,12.2622951 L20,10 C20,7.23857625 22.2385763,5 25,5 L35.5,5 C38.2614237,5 40.5,7.23857625 40.5,10 L40.5,12.2622951" id="Path-27" stroke="#414141" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M30.5,0 L30.5,16" id="Line-4" stroke="#414141" stroke-width="2" stroke-linecap="round"></path>
+                    <circle id="Oval" stroke="#414141" stroke-width="2" fill="#F8E71C" cx="30.5" cy="16.5" r="2.5"></circle>
+                    <path d="M20.8944272,10.7888544 L22.2763932,13.5527864 C22.5233825,14.0467649 22.3231581,14.6474379 21.8291796,14.8944272 C21.6903242,14.9638549 21.5372111,15 21.381966,15 L18.618034,15 C18.0657492,15 17.618034,14.5522847 17.618034,14 C17.618034,13.8447549 17.6541791,13.6916418 17.7236068,13.5527864 L19.1055728,10.7888544 C19.3525621,10.2948759 19.9532351,10.0946515 20.4472136,10.3416408 C20.640741,10.4384045 20.7976635,10.595327 20.8944272,10.7888544 Z" id="Triangle" stroke="#414141" stroke-width="2" fill="#FE7998"></path>
+                    <path d="M41.001032,15.5596876 C40.1404358,15.7648186 39.2176959,15.3716926 38.7870735,14.5526 C38.6621606,14.3150016 38.5875973,14.056138 38.5659113,13.7919685 C38.1048813,13.0368818 38.1936241,12.0378214 38.8395577,11.3751616 C39.0269271,11.1829404 39.2500796,11.0320333 39.4946185,10.9297758 C40.0702825,10.2579756 41.0478684,10.0336483 41.8776998,10.4431946 C42.1184133,10.5619938 42.3308924,10.7275917 42.5037117,10.9285626 C43.3205216,11.268454 43.8359602,12.1288725 43.7028906,13.0446458 C43.6642904,13.3102889 43.5724571,13.5635411 43.4347265,13.7900055 C43.3638788,14.6718701 42.7048514,15.4279652 41.7927785,15.584398 C41.5282087,15.6297753 41.2589735,15.6206959 41.001032,15.5596876 Z" id="Star" stroke="#414141" stroke-width="2" fill="#B8E986"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
