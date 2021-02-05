@@ -48,6 +48,7 @@ declare module "@feedloop/qore-client" {
     };
     params: {};
     actions: {};
+    forms: {};
   };
 
   type AllProductViewRow = {
@@ -68,6 +69,7 @@ declare module "@feedloop/qore-client" {
     };
     params: {};
     actions: {};
+    forms: {};
   };
 
   type AllBrandViewRow = {
@@ -82,6 +84,7 @@ declare module "@feedloop/qore-client" {
     };
     params: {};
     actions: {};
+    forms: {};
   };
 
   type AllCategoryViewRow = {
@@ -97,6 +100,7 @@ declare module "@feedloop/qore-client" {
     };
     params: {};
     actions: {};
+    forms: {};
   };
 
   type ProjectSchema = {

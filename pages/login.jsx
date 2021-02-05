@@ -1,54 +1,102 @@
+import { NavigationHelpersContext } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, Image, Button, Alert } from "react-native";
 import qoreContext from "../qoreContext";
 
 function LoginPage() {
-    const Separator = () => (
-        <View style={styles.separator} />
+  // const client = new QoreClient({...config, getToken: () => cookies.get("token")})
+  const { data: DataAllMember } = qoreContext.view("allMember").useListRow()
+  const client = qoreContext.useClient();
+  const Separator = () => (
+    <View style={styles.separator} />
     );
 
-    const [value, onChangeText] = React.useState('Useless Placeholder');
+  const [dataLogin, setDataLogin] = React.useState({
+    Email: '',
+    Password: ''
+  });
 
-    const item = qoreContext.view("allProduct").useListRow()
+  function handleOnchange(dataValue) {
+    let key = dataValue.name
+    let value = dataValue.value
+    setDataLogin({
+      ...dataLogin,
+      [key]: value
+    })
+  }
 
-    console.log(items.data, "dari Login")
-    return (
-        <>
-            <View style={styles.container}>
+  const handleLogout = () => {
+    localStorage.clear()
+  }
 
-                <Text>Sewa Perlengkapan Bayi & Ibu Menyusui</Text>
-                <Text>Dari Ibu untuk Ibu</Text>
-                <Separator />
-                <Text>Email</Text>
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={text => onChangeText(text)}
-                />
-                <Text>Password</Text>
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={text => onChangeText(text)}
-                />
-                <Separator />
+  const handleLogin = async (email, password) => {
+    try {
+      const token = await client.authenticate(
+        email,
+        password
+      );
+      
+      console.log(token)
+      localStorage.setItem('access_token', token)
+      localStorage.setItem('access_email', email)
+      // props.navigation.navigate("Home")
+      Alert.alert('Email/password anda salah')
+    } catch (err) {
+      console.log(err)
+    }
+  };
+  
+  function handleSubmitLogin() {
+    let submitDataLogin = {
+      Email: dataLogin.Email,
+      Password: dataLogin.Password
+    }
+    handleLogin(submitDataLogin.Email, submitDataLogin.Password)
+  }
 
-                <View style={styles.btn}>
-                    <Button
-                        title="MASUK"
-                        color="#f194ff"
-                        onS={() => Alert.alert('Button with adjusted color pressed')}
-                    />
-                </View>
-                <Image
-                    style={styles.tinyLogo}
-                    source={require("../img/tentang.jpg")}
-                />
-                <Image
-                    style={styles.tinyLogo}
-                    source={require("../img/kontak.jpg")}
-                />
-            </View>
-        </>
-    );
+  
+  return (
+    <>
+      <View style={styles.container}>
+        <Text>Sewa Perlengkapan Bayi & Ibu Menyusui</Text>
+        <Text>Dari Ibu untuk Ibu</Text>
+        <Separator />
+          <Text>Email</Text>
+          <TextInput
+              style={styles.textInput}
+              onChangeText={text => handleOnchange({value:text, name:'Email'})}
+          />
+          <Text>Password</Text>
+          <TextInput
+              style={styles.textInput}
+              onChangeText={text => {handleOnchange({value:text, name:'Password'})}}
+              secureTextEntry={true}
+          />
+        <Separator />
+
+        <View style={styles.btn}>
+          <Button
+              title="MASUK"
+              color="#f194ff"
+              onPress={() => handleSubmitLogin()}
+          />
+          <Button
+              title="KELUAR"
+              color="#f194ff"
+              onPress={() => handleLogout()}
+          />
+        </View>
+        {/* <Image
+            style={styles.tinyLogo}
+            source={require("../img/tentang.jpg")}
+        />
+        <Image
+            style={styles.tinyLogo}
+            source={require("../img/kontak.jpg")}
+        /> */}
+      </View>
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -73,7 +121,8 @@ const styles = StyleSheet.create({
     btn: {
         width: 200,
         height: 50,
-        color: "#FE7998"
+        color: "#FE7998",
+        display: 'flex'
     },
     tinyLogo: {
         width: 30,
