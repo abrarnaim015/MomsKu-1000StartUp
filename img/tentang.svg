@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="18px" viewBox="0 0 28 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>tentang</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="7.10019258%" y1="90.3430613%" x2="7.10019258%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#45C3CA" offset="0%"></stop>
+            <stop stop-color="#46D5C3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Welcome-Screen" transform="translate(-88.000000, -580.000000)" fill="url(#linearGradient-1)">
+            <g id="tentang" transform="translate(88.000000, 580.000000)">
+                <path d="M15.5180161,9.66587036 C16.857518,9.55529012 18.0181793,9.5 19,9.5 C20.0991814,9.5 21.4375675,9.56929819 23.0151581,9.70789458 C25.5970447,9.93472101 27.5775781,12.096879 27.5775781,14.6887101 L27.5775781,17.2142456 L20.5775781,17.2142456 L20.5775781,14.6887101 C20.5775781,12.096879 18.5970447,9.93472101 16.0151581,9.70789458 C15.8467172,9.6930965 15.6810032,9.67908843 15.5180161,9.66587036 Z" id="Combined-Shape"></path>
+                <path d="M0.577552937,17.2142456 L0.577556134,14.6789316 C0.577565462,12.0874861 2.55753342,9.92552181 5.1389907,9.69821532 C6.63970858,9.56607177 7.92671168,9.5 9,9.5 C10.0991814,9.5 11.4375675,9.56929819 13.0151581,9.70789458 L13.0151582,9.70789402 C15.5970447,9.93472101 17.5775781,12.096879 17.5775781,14.6887101 L17.5775781,17.2142456 L0.577552937,17.2142456 Z" id="Path-29"></path>
+                <circle id="Oval" cx="9.00758712" cy="3.52819819" r="3.5"></circle>
+                <circle id="Oval" cx="18.955144" cy="3.52819819" r="3.5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>kontak</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="-89.1231335%" id="linearGradient-1">
+            <stop stop-color="#FAD961" offset="0%"></stop>
+            <stop stop-color="#F76B1C" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="7.10019258%" y1="7.10019258%" x2="7.10019258%" y2="90.3430613%" id="linearGradient-2">
+            <stop stop-color="#45C3CA" offset="0%"></stop>
+            <stop stop-color="#46D5C3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Welcome-Screen" transform="translate(-264.000000, -580.000000)">
+            <g id="kontak" transform="translate(263.000000, 580.000000)">
+                <path d="M13,0.5 L18.5,0.5 C19.6045695,0.5 20.5,1.3954305 20.5,2.5 L20.5,4.5 C20.5,6.15685425 19.1568542,7.5 17.5,7.5 L14.5,7.5 L11,11 L11,2.5 C11,1.3954305 11.8954305,0.5 13,0.5 Z" id="Path-14" fill="url(#linearGradient-1)"></path>
+                <path d="M2.99008806,0.5 L5.36039219,0.5 C6.31375423,0.5 7.13458387,1.17291934 7.32155355,2.10776773 L7.81722517,4.58612584 C7.9330938,5.16546898 7.78688151,5.76639811 7.41780144,6.22774821 L6,8 C6.18425286,8.85091952 7.18425286,10.1842529 9,12 C10.8157471,13.8157471 12.3157471,14.9824138 13.5,15.5 L14.7396102,13.9504873 C15.2066852,13.3666435 15.9604147,13.0920829 16.6935801,13.238716 L18.8922323,13.6784465 C19.8270807,13.8654161 20.5,14.6862458 20.5,15.6396078 L20.4999818,17.820755 C20.4999818,18.9226477 19.6087174,19.8169615 18.5068311,19.8207251 C13.9758376,19.8362012 9.97356054,18.0626262 6.5,14.5 C3.06475508,10.9766719 1.22907331,7.01235989 0.992954715,2.60706404 L0.992934666,2.60706512 C0.933815324,1.50406775 1.78004566,0.561986028 2.88304302,0.502866686 C2.91869272,0.500955904 2.95438719,0.5 2.99008806,0.5 Z" id="Path-28" fill="url(#linearGradient-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
