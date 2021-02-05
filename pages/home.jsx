@@ -10,7 +10,6 @@ export default function HomePage() {
     return(
         <>
         <Text>{JSON.stringify(products.data)}</Text>
-
         </>
     )
 }
