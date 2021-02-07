@@ -10,6 +10,7 @@
   "dependencies": {
     "@feedloop/qore-client": "^0.1.26",
     "@feedloop/qore-react": "^0.1.28",
+    "@react-native-async-storage/async-storage": "^1.13.4",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
