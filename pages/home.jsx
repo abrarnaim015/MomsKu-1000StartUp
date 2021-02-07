@@ -7,7 +7,7 @@ export default function HomePage() {
 
     const products = qoreContext.views.allProduct.useListRow()
 
-    console.log(products, " dari home")
+    // console.log(products, " dari home")
     return(
         <>
         <Text>{JSON.stringify(products.data)}</Text>
