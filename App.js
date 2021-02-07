@@ -1,23 +1,26 @@
 import "react-native-get-random-values";
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import qoreContext from "./qoreContext"
 import { NavigationContainer } from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginPage from "./pages/login"
 import HomePage from "./pages/home"
+// import { createStackNavigator } from "@react-navigation/stack";
+// import React, { useEffect } from 'react';
 
 export default function App({navigation}) {
-  const Stack = createStackNavigator()
+  // const Stack = createStackNavigator()
+  const Stack = createBottomTabNavigator()
 
-  useEffect( async () => {
-    const TokenUser = await AsyncStorage.getItem('token')
-    if(!TokenUser) {
-      navigation.navigate('Login')
-    } else {
-      navigation.navigate('Home')
-    }
-  }, [])
+  // useEffect( async () => {
+  //   const TokenUser = await AsyncStorage.getItem('token')
+  //   if(!TokenUser) {
+  //     navigation.navigate('Login')
+  //   } else {
+  //     navigation.navigate('Home')
+  //   }
+  // }, [])
 
   return (
     <>
@@ -27,12 +30,13 @@ export default function App({navigation}) {
             <Stack.Screen
               name="Login"
               component={LoginPage}
-              options={{ headerShown: false }}
+              options={{ tabBarVisible: false }}
+              // options={{ headerShown: false }}
             />
             <Stack.Screen
               name="Home"
               component={HomePage}
-              options={{ headerShown: false }}
+              // options={{ headerShown: false }}
             />
         </Stack.Navigator>
         </NavigationContainer>
@@ -42,8 +46,8 @@ export default function App({navigation}) {
 }
 
 const styles = StyleSheet.create({
-        container: {
-        flex: 1,
+    container: {
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',

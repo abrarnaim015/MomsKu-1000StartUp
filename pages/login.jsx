@@ -9,7 +9,7 @@ function LoginPage({navigation}) {
   const client = qoreContext.useClient();
   const Separator = () => (
     <View style={styles.separator} />
-    );
+  );
 
   const [dataLogin, setDataLogin] = React.useState({
     Email: '',
@@ -24,25 +24,42 @@ function LoginPage({navigation}) {
       [key]: value
     })
   }
-
-  // const handleLogout = () => {
-  //   localStorage.clear()
-  // }
   
   const handleSubmitLogin =  async () => {
     try {
-      const token = await client.authenticate(
-        dataLogin.Email.toLowerCase(),
-        dataLogin.Password
-      );
-        await AsyncStorage.setItem('token', token)
+      if(dataLogin.Email === '' && dataLogin.Password === '') {
         navigation.navigate('Home')
-        setDataLogin({
-          Email: '',
-          Password: ''
-        })
+        // Alert.alert(
+        //   "Hi Moms",
+        //   "Sorry Your Email and Password do not empty"
+        // )
+      } else if (dataLogin.Email === '') {
+        Alert.alert(
+          "Hi Moms",
+          "Sorry Your Email do not empty"
+        )
+      } else if (dataLogin.Password === '') {
+        Alert.alert(
+          "Hi Moms",
+          "Sorry Your Password do not empty"
+        )
+      } else {
+        const token = await client.authenticate(
+          dataLogin.Email.toLowerCase(),
+          dataLogin.Password
+        );
+          await AsyncStorage.setItem('token', token)
+          navigation.navigate('Home')
+          setDataLogin({
+            Email: '',
+            Password: ''
+          })
+      }
     } catch (error) {
-      Alert.alert('asalahhh pas')
+      Alert.alert(
+        "Hi Moms",
+        "Sorry Your Email or Password wrong"
+      )
       console.log(error)
     }
   }
@@ -92,7 +109,7 @@ function LoginPage({navigation}) {
             <View style={styles.textRegis}>
               <Text style={{ textAlign: 'center' }}>Belum pernah mendaftar?   <Text style={{textAlign: 'center', color: '#F97897'}}>Silahkan daftar di sini</Text></Text>
             </View>
-            <View style={styles.boxBigContak}>
+            <View>
               <View style={styles.boxContak}>
                 <View>
                   <Image
@@ -179,8 +196,7 @@ const styles = StyleSheet.create({
     },
     textRegis: {
       marginTop: 20,
-      textAlign: 'center',
-      // marginBottom: 30
+      textAlign: 'center'
     },
     regis: {
       color: '#F97897'
@@ -198,11 +214,6 @@ const styles = StyleSheet.create({
     textContak: {
       textAlign: 'center',
       marginTop: 10
-    },
-    boxBigContak: {
-      // height: 100,
-      // alignItems: 'center',
-      // justifyContent: 'center'
     }
 })
 
