@@ -2,9 +2,9 @@ import { NavigationHelpersContext } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, Image, Button, Alert } from "react-native";
 import qoreContext from "../qoreContext";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function LoginPage() {
-  // const client = new QoreClient({...config, getToken: () => cookies.get("token")})
+function LoginPage({navigation}) {
   const { data: DataAllMember } = qoreContext.view("allMember").useListRow()
   const client = qoreContext.useClient();
   const Separator = () => (
@@ -26,32 +26,22 @@ function LoginPage() {
   }
 
   const handleLogout = () => {
-    localStorage.clear()
+    // localStorage.clear()
   }
-
-  const handleLogin = async (email, password) => {
+  
+  const handleSubmitLogin =  async () => {
     try {
       const token = await client.authenticate(
-        email,
-        password
+        dataLogin.Email,
+        dataLogin.Password
       );
-      
-      console.log(token)
-      localStorage.setItem('access_token', token)
-      localStorage.setItem('access_email', email)
-      // props.navigation.navigate("Home")
-      Alert.alert('Email/password anda salah')
-    } catch (err) {
-      console.log(err)
+      await AsyncStorage.setItem('token', token)
+      navigation.navigate('Home')
+
+    } catch (error) {
+      Alert.alert('asalahhh pas')
+      console.log(error)
     }
-  };
-  
-  function handleSubmitLogin() {
-    let submitDataLogin = {
-      Email: dataLogin.Email,
-      Password: dataLogin.Password
-    }
-    handleLogin(submitDataLogin.Email, submitDataLogin.Password)
   }
 
   

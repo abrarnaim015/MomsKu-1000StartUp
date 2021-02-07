@@ -1,3 +1,4 @@
+import React from 'react'
 import qoreContext from "../qoreContext"
 import { Text, View, StyleSheet, TextInput, Image, Button, Alert } from "react-native";
 
