@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, Image, ImageBackground } from "react-native";
+import React from 'react';
+import { Text, View, StyleSheet, TextInput, Button, Alert, Image, ImageBackground, Keyboard } from "react-native";
 import qoreContext from "../qoreContext";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { NavigationHelpersContext } from '@react-navigation/native';
@@ -24,15 +24,28 @@ function LoginPage({navigation}) {
       [key]: value
     })
   }
+
+  function converName(em) {
+    let name = ''
+    for(let i = 0; i < em.length; i++) {
+      if(em[i] !== '@') {
+        name += em[i]
+      } else if(em[i] === '@') {
+        break
+      }
+    }
+    return name
+  }
   
   const handleSubmitLogin =  async () => {
     try {
+      Keyboard.dismiss()
       if(dataLogin.Email === '' && dataLogin.Password === '') {
-        navigation.navigate('Home')
-        // Alert.alert(
-        //   "Hi Moms",
-        //   "Sorry Your Email and Password do not empty"
-        // )
+        // navigation.navigate('Home')
+        Alert.alert(
+          "Hi Moms",
+          "Sorry Your Email and Password do not empty"
+        )
       } else if (dataLogin.Email === '') {
         Alert.alert(
           "Hi Moms",
@@ -48,12 +61,16 @@ function LoginPage({navigation}) {
           dataLogin.Email.toLowerCase(),
           dataLogin.Password
         );
-          await AsyncStorage.setItem('token', token)
-          navigation.navigate('Home')
-          setDataLogin({
-            Email: '',
-            Password: ''
-          })
+        const Name = converName(dataLogin.Email)
+        await AsyncStorage.setItem('token', token)
+        // await AsyncStorage.setItem('NameUser', Name)
+        navigation.navigate('Home', {
+          nameUser: Name
+        })
+        setDataLogin({
+          Email: '',
+          Password: ''
+        })
       }
     } catch (error) {
       Alert.alert(
@@ -182,7 +199,6 @@ const styles = StyleSheet.create({
       },
       shadowOpacity: 0.22,
       shadowRadius: 2.22,
-
       elevation: 3,
     },
     lupaSandi: {
