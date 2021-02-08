@@ -33,6 +33,8 @@ declare module "@feedloop/qore-client" {
     brand: BrandTableRow;
     category: CategoryTableRow;
     image: string;
+    startDate: Date;
+    endDate: Date;
   };
 
   type AllMemberViewRow = {
@@ -59,6 +61,8 @@ declare module "@feedloop/qore-client" {
       brand: BrandTableRow;
       category: CategoryTableRow;
       image: string;
+      startDate: Date;
+      endDate: Date;
     };
     write: {
       name: string;
@@ -66,6 +70,8 @@ declare module "@feedloop/qore-client" {
       brand: string[];
       category: string[];
       image: string;
+      startDate: Date;
+      endDate: Date;
     };
     params: {};
     actions: {};

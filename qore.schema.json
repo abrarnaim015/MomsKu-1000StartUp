@@ -162,6 +162,22 @@
           "fileType": "image",
           "id": "image",
           "displayField": false
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "startDate",
+          "displayField": false
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "endDate",
+          "displayField": false
         }
       ]
     }
@@ -342,6 +358,24 @@
           "defaultValue": null,
           "fileType": "image",
           "id": "image",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "startDate",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "endDate",
           "displayField": false,
           "design": null
         }

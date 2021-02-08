@@ -1,23 +1,99 @@
 import React from 'react'
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Text, StyleSheet, View, Image, ImageBackground, Alert } from "react-native";
 // import qoreContext from "../qoreContext"
-import { Text, StyleSheet, View, Image, ImageBackground } from "react-native";
 
-export default function HomePage() {
+export default function HomePage({ route, navigation }) {
+  const { nameUser } = route.params
   // const products = qoreContext.views.allProduct.useListRow()
   // console.log(products, " dari home")
+
+  // const [nameUser, setNameUser] = React.useState('')
+
+  // useEffect(() => {
+  //   setNameUser(getName())
+  // }, [])
+
+  // const getName = async () => {
+  //   try {
+  //     const nameUserGet =  await AsyncStorage.getItem('NameUser')
+  //     return nameUserGet
+  //   } catch (error) {
+  //     console.log(error)
+  //     Alert.alert(
+  //       "Hi Moms",
+  //       "Sorry moms someting wrong"
+  //     )
+  //   }
+  // }
 
   return(
     <>
       <View style={styles.container}>
+        <ImageBackground source={require('../img/bgHomeMomsKu.jpg')} style={styles.bgHome}>
           <View style={{ marginBottom: 20 }}>
             <Image
               source={require('../img/logo.png')}
             />
           </View>
-          <Text>Hi Moms, Welcome to <Text style={styles.textApp}>MomsKu App</Text></Text>
+          <View style={styles.boxIcon}>
+            <View>
+              <Image
+                source={require('../img/face.png')}
+              />
+            </View>
+            <View style={{ marginLeft: 10, paddingVertical: 10 }}>
+              <Text style={{ marginVertical: 5, fontSize: 20, fontWeight: 'bold' }}>Hi, {nameUser}!</Text>
+              <Text>Let's find the baby equipment</Text>
+              <Text>you need today.</Text>
+            </View>
+          </View>
+          <View>
+            <View>
+              <Text style={styles.textChoose}>Choose The Equipments</Text>
+            </View>
+            <View style={styles.boxImgIcon}>
+              <View style={styles.boxIconEquioment}>
+                <Image
+                  source={require('../img/svgtopng/stroller.png')}
+                />
+                <Image
+                  source={require('../img/svgtopng/pump.png')}
+                />
+                <Image
+                  source={require('../img/svgtopng/food.png')}
+                />
+              </View>
+              <View style={styles.boxIconEquioment}>
+                <Text style={{ marginLeft: 20 }}>Stroller</Text>
+                <Text style={{ marginLeft: 10 }}>Breast Pump</Text>
+                <Text style={{ marginRight: 10 }}>Food Maker</Text>
+              </View>
+            </View>
+            <View>
+              <View style={styles.boxIconEquioment}>
+                <Image
+                  source={require('../img/svgtopng/toys.png')}
+                />
+                <Image
+                  source={require('../img/svgtopng/bath.png')}
+                />
+                <Image
+                  source={require('../img/svgtopng/bed.png')}
+                />
+              </View>
+              <View style={styles.boxIconEquioment}>
+                <Text style={{ marginLeft: 20 }}>Toys</Text>
+                <Text style={{ marginLeft: 5 }}>Bath Tub</Text>
+                <Text style={{ marginRight: 30 }}>Bed</Text>
+              </View>
+            </View>
+          </View>
+        </ImageBackground>
       </View>
     </>
   )
+
 }
 
 const styles = StyleSheet.create({
@@ -26,9 +102,60 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#45C6C9'
+    // backgroundColor: '#45C6C9'
   },
-  textApp: {
-    color: '#F97897'
+  // textApp: {
+  //   color: '#F97897'
+  // },
+  boxIcon: {
+    paddingTop: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    width: 300,
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 80,
+    height: 150
+  },
+  bgHome: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: 'center',
+    width: '100%'
+  },
+  textChoose: {
+    fontWeight: 'bold', 
+    textAlign: 'left',
+    marginRight: 150
+  },
+  boxIconEquioment: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  boxImgIcon: {
+    marginVertical: 20
   }
 })
+
+
+// return(
+//   <>
+//     <View style={styles.container}>
+//         <View style={{ marginBottom: 20 }}>
+//           <Image
+//             source={require('../img/logo.png')}
+//           />
+//         </View>
+//         <Text>Hi Moms, Welcome to <Text style={styles.textApp}>MomsKu App</Text></Text>
+//     </View>
+//   </>
+// )
