@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginPage from "./pages/login"
 import HomePage from "./pages/home"
+import DetailProduct from './pages/detail_product'
 // import { createStackNavigator } from "@react-navigation/stack";
 // import React, { useEffect } from 'react';
 
@@ -37,6 +38,10 @@ export default function App({navigation}) {
               name="Home"
               component={HomePage}
               // options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Detail"
+              component={DetailProduct}
             />
         </Stack.Navigator>
         </NavigationContainer>

@@ -41,7 +41,9 @@ function LoginPage({navigation}) {
     try {
       Keyboard.dismiss()
       if(dataLogin.Email === '' && dataLogin.Password === '') {
-        // navigation.navigate('Home')
+        // navigation.navigate('Home', {
+        //   nameUser: 'Mamih'
+        // })
         Alert.alert(
           "Hi Moms",
           "Sorry Your Email and Password do not empty"
