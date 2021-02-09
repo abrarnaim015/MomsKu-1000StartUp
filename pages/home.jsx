@@ -1,32 +1,13 @@
 import React from 'react'
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Text, StyleSheet, View, Image, ImageBackground, Alert } from "react-native";
-// import qoreContext from "../qoreContext"
+import { Text, StyleSheet, View, Image, ImageBackground } from "react-native";
 
-export default function HomePage({ route, navigation }) {
+export default function HomePage({ route }) {
   const { nameUser } = route.params
-  // const products = qoreContext.views.allProduct.useListRow()
-  // console.log(products, " dari home")
 
-  // const [nameUser, setNameUser] = React.useState('')
-
-  // useEffect(() => {
-  //   setNameUser(getName())
-  // }, [])
-
-  // const getName = async () => {
-  //   try {
-  //     const nameUserGet =  await AsyncStorage.getItem('NameUser')
-  //     return nameUserGet
-  //   } catch (error) {
-  //     console.log(error)
-  //     Alert.alert(
-  //       "Hi Moms",
-  //       "Sorry moms someting wrong"
-  //     )
-  //   }
-  // }
-
+  if(nameUser === '' || nameUser === null) {
+    nameUser = 'Mamih'
+  }
+ 
   return(
     <>
       <View style={styles.container}>
@@ -101,12 +82,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column',
-    // backgroundColor: '#45C6C9'
+    flexDirection: 'column'
   },
-  // textApp: {
-  //   color: '#F97897'
-  // },
   boxIcon: {
     paddingTop: 20,
     shadowColor: "#000",
