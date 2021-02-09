@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginPage from "./pages/login"
 import HomePage from "./pages/home"
 import DetailProduct from './pages/detail_product'
+import ListDataProdukByCategory from './pages/list_product_by_category'
 // import { createStackNavigator } from "@react-navigation/stack";
 // import React, { useEffect } from 'react';
 
@@ -42,6 +43,10 @@ export default function App({navigation}) {
             <Stack.Screen
               name="Detail"
               component={DetailProduct}
+            />
+            <Stack.Screen
+              name="List"
+              component={ListDataProdukByCategory}
             />
         </Stack.Navigator>
         </NavigationContainer>

@@ -140,7 +140,7 @@
           "id": "brand",
           "table": "brand",
           "column": "product",
-          "multiple": false,
+          "multiple": true,
           "displayField": false
         },
         {
@@ -177,6 +177,30 @@
           "deletionProtection": false,
           "defaultValue": null,
           "id": "endDate",
+          "displayField": false
+        },
+        {
+          "name": "nameCategory",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "nameCategory",
+          "displayField": false
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "address",
+          "displayField": false
+        },
+        {
+          "name": "price",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "0",
+          "id": "price",
           "displayField": false
         }
       ]
@@ -319,15 +343,6 @@
           "design": null
         },
         {
-          "name": "description",
-          "type": "text",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "description",
-          "displayField": false,
-          "design": null
-        },
-        {
           "name": "brand",
           "type": "relation",
           "deletionProtection": false,
@@ -335,7 +350,7 @@
           "id": "brand",
           "table": "brand",
           "column": "product",
-          "multiple": false,
+          "multiple": true,
           "displayField": false,
           "design": null
         },
@@ -376,6 +391,42 @@
           "deletionProtection": false,
           "defaultValue": null,
           "id": "endDate",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "description",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "nameCategory",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "nameCategory",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "address",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "price",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "0",
+          "id": "price",
           "displayField": false,
           "design": null
         }

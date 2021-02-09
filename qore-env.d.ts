@@ -30,11 +30,14 @@ declare module "@feedloop/qore-client" {
     id: string;
     name: string;
     description: string;
-    brand: BrandTableRow;
+    brand: { nodes: BrandTableRow[] };
     category: CategoryTableRow;
     image: string;
     startDate: Date;
     endDate: Date;
+    nameCategory: string;
+    address: string;
+    price: number;
   };
 
   type AllMemberViewRow = {
@@ -57,21 +60,27 @@ declare module "@feedloop/qore-client" {
     read: {
       id: string;
       name: string;
-      description: string;
-      brand: BrandTableRow;
+      brand: { nodes: BrandTableRow[] };
       category: CategoryTableRow;
       image: string;
       startDate: Date;
       endDate: Date;
+      description: string;
+      nameCategory: string;
+      address: string;
+      price: number;
     };
     write: {
       name: string;
-      description: string;
       brand: string[];
       category: string[];
       image: string;
       startDate: Date;
       endDate: Date;
+      description: string;
+      nameCategory: string;
+      address: string;
+      price: number;
     };
     params: {};
     actions: {};

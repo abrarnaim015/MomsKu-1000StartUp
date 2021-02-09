@@ -41,13 +41,13 @@ function LoginPage({navigation}) {
     try {
       Keyboard.dismiss()
       if(dataLogin.Email === '' && dataLogin.Password === '') {
-        // navigation.navigate('Home', {
-        //   nameUser: 'Mamih'
-        // })
-        Alert.alert(
-          "Hi Moms",
-          "Sorry Your Email and Password do not empty"
-        )
+        navigation.navigate('Home', {
+          nameUser: 'Mamih'
+        })
+        // Alert.alert(
+        //   "Hi Moms",
+        //   "Sorry Your Email and Password do not empty"
+        // )
       } else if (dataLogin.Email === '') {
         Alert.alert(
           "Hi Moms",
