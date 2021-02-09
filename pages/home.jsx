@@ -1,11 +1,19 @@
 import React from 'react'
-import { Text, StyleSheet, View, Image, ImageBackground } from "react-native";
+import { Text, StyleSheet, View, Image, ImageBackground, Alert, TouchableOpacity } from "react-native";
+// import qoreContext from "../qoreContext";
 
-export default function HomePage({ route }) {
+export default function HomePage({ route, navigation }) {
   const { nameUser } = route.params
-
+  // const { data: AllDataProductByCategory } = qoreContext.view("allCategory").useListRow()
+  // console.log(AllDataProductByCategory, '<<<<<<')
   if(nameUser === '' || nameUser === null) {
     nameUser = 'Mamih'
+  }
+  
+  function getDataByCategory(categoryOf) {
+    navigation.navigate('List', {
+      byCategory: categoryOf
+    })
   }
  
   return(
@@ -35,15 +43,21 @@ export default function HomePage({ route }) {
             </View>
             <View style={styles.boxImgIcon}>
               <View style={styles.boxIconEquioment}>
-                <Image
-                  source={require('../img/svgtopng/stroller.png')}
-                />
-                <Image
-                  source={require('../img/svgtopng/pump.png')}
-                />
-                <Image
-                  source={require('../img/svgtopng/food.png')}
-                />
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Stroller')}>
+                  <Image
+                    source={require('../img/svgtopng/stroller.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Pump')}>
+                  <Image
+                    source={require('../img/svgtopng/pump.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Food')}>
+                  <Image
+                    source={require('../img/svgtopng/food.png')}
+                  />
+                </TouchableOpacity>
               </View>
               <View style={styles.boxIconEquioment}>
                 <Text style={{ marginLeft: 20 }}>Stroller</Text>
@@ -53,15 +67,21 @@ export default function HomePage({ route }) {
             </View>
             <View>
               <View style={styles.boxIconEquioment}>
-                <Image
-                  source={require('../img/svgtopng/toys.png')}
-                />
-                <Image
-                  source={require('../img/svgtopng/bath.png')}
-                />
-                <Image
-                  source={require('../img/svgtopng/bed.png')}
-                />
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Toys')}>
+                  <Image
+                    source={require('../img/svgtopng/toys.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Bath')}>
+                  <Image
+                    source={require('../img/svgtopng/bath.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Bad')}>
+                  <Image
+                    source={require('../img/svgtopng/bed.png')}
+                  />
+                </TouchableOpacity>
               </View>
               <View style={styles.boxIconEquioment}>
                 <Text style={{ marginLeft: 20 }}>Toys</Text>
