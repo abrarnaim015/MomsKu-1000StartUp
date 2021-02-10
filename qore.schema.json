@@ -82,6 +82,86 @@
       ]
     },
     {
+      "name": "Basket",
+      "type": null,
+      "id": "basket",
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "name",
+          "displayField": true
+        },
+        {
+          "name": "id_Membar",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "idMembar",
+          "table": "member",
+          "column": "basket",
+          "multiple": true,
+          "displayField": false
+        },
+        {
+          "name": "id_Product",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "idProduct",
+          "table": "product",
+          "column": "basket1",
+          "multiple": true,
+          "displayField": false
+        },
+        {
+          "name": "total_hari",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "1",
+          "id": "totalHari",
+          "displayField": false
+        },
+        {
+          "name": "ongkir",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "25000",
+          "id": "ongkir",
+          "displayField": false
+        },
+        {
+          "name": "all_Total",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "25000",
+          "id": "allTotal",
+          "displayField": false
+        },
+        {
+          "name": "total_Harga_Sewa",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "totalHargaSewa",
+          "displayField": false
+        },
+        {
+          "name": "member 2",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "member2",
+          "table": "member",
+          "column": "idBasket",
+          "multiple": true,
+          "displayField": false
+        }
+      ]
+    },
+    {
       "name": "member",
       "type": "auth",
       "id": "member",
@@ -107,6 +187,55 @@
           "type": "password",
           "deletionProtection": false,
           "id": "password",
+          "displayField": false
+        },
+        {
+          "name": "Basket",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "basket",
+          "table": "basket",
+          "column": "idMembar",
+          "multiple": true,
+          "displayField": false
+        },
+        {
+          "name": "alamat",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "alamat",
+          "displayField": false
+        },
+        {
+          "name": "kode_Poss",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "kodePoss",
+          "displayField": false
+        },
+        {
+          "name": "Product 3",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "product3",
+          "table": "product",
+          "column": "merchant",
+          "multiple": true,
+          "displayField": false
+        },
+        {
+          "name": "id_Basket",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "idBasket",
+          "table": "basket",
+          "column": "member2",
+          "multiple": true,
           "displayField": false
         }
       ]
@@ -202,55 +331,33 @@
           "defaultValue": "0",
           "id": "price",
           "displayField": false
+        },
+        {
+          "name": "Basket 1",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "basket1",
+          "table": "basket",
+          "column": "idProduct",
+          "multiple": true,
+          "displayField": false
+        },
+        {
+          "name": "merchant",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "merchant",
+          "table": "member",
+          "column": "product3",
+          "multiple": true,
+          "displayField": false
         }
       ]
     }
   ],
   "roles": [
-    {
-      "name": "admin",
-      "isAdmin": true,
-      "isEditor": false,
-      "isPublic": false,
-      "permissions": [
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allMember"
-        }
-      ]
-    },
-    {
-      "name": "customer",
-      "isAdmin": false,
-      "isEditor": false,
-      "isPublic": false,
-      "permissions": [
-        {
-          "insert": false,
-          "select": true,
-          "update": false,
-          "delete": false,
-          "viewId": "allProduct"
-        },
-        {
-          "insert": false,
-          "select": true,
-          "update": false,
-          "delete": false,
-          "viewId": "allBrand"
-        },
-        {
-          "insert": false,
-          "select": true,
-          "update": false,
-          "delete": false,
-          "viewId": "allCategory"
-        }
-      ]
-    },
     {
       "name": "public",
       "isAdmin": false,
@@ -284,6 +391,64 @@
           "update": false,
           "delete": false,
           "viewId": "allCategory"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allBasket"
+        }
+      ]
+    },
+    {
+      "name": "customer",
+      "isAdmin": false,
+      "isEditor": false,
+      "isPublic": false,
+      "permissions": [
+        {
+          "insert": false,
+          "select": true,
+          "update": false,
+          "delete": false,
+          "viewId": "allProduct"
+        },
+        {
+          "insert": false,
+          "select": true,
+          "update": false,
+          "delete": false,
+          "viewId": "allBrand"
+        },
+        {
+          "insert": false,
+          "select": true,
+          "update": false,
+          "delete": false,
+          "viewId": "allCategory"
+        }
+      ]
+    },
+    {
+      "name": "admin",
+      "isAdmin": true,
+      "isEditor": false,
+      "isPublic": false,
+      "permissions": [
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allMember"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allBasket"
         }
       ]
     }
@@ -320,6 +485,36 @@
           "type": "password",
           "deletionProtection": false,
           "id": "password",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "alamat",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "alamat",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "kode_Poss",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "kodePoss",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "id_Basket",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "idBasket",
+          "table": "basket",
+          "column": "member2",
+          "multiple": true,
           "displayField": false,
           "design": null
         }
@@ -429,6 +624,18 @@
           "id": "price",
           "displayField": false,
           "design": null
+        },
+        {
+          "name": "merchant",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "merchant",
+          "table": "member",
+          "column": "product3",
+          "multiple": true,
+          "displayField": false,
+          "design": null
         }
       ],
       "design": null
@@ -496,6 +703,85 @@
           "destinations": ["id"],
           "aggregate": "count",
           "condition": null,
+          "displayField": false,
+          "design": null
+        }
+      ],
+      "design": null
+    },
+    {
+      "id": "allBasket",
+      "name": "All Basket",
+      "tableId": "basket",
+      "parameters": [],
+      "sorts": [],
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "name",
+          "displayField": true,
+          "design": null
+        },
+        {
+          "name": "id_Membar",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "idMembar",
+          "table": "member",
+          "column": "basket",
+          "multiple": true,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "id_Product",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "idProduct",
+          "table": "product",
+          "column": "basket1",
+          "multiple": true,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "total_hari",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "1",
+          "id": "totalHari",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "ongkir",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "25000",
+          "id": "ongkir",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "all_Total",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "25000",
+          "id": "allTotal",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "total_Harga_Sewa",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "totalHargaSewa",
           "displayField": false,
           "design": null
         }

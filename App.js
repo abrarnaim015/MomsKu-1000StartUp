@@ -8,6 +8,8 @@ import LoginPage from "./pages/login"
 import HomePage from "./pages/home"
 import DetailProduct from './pages/detail_product'
 import ListDataProdukByCategory from './pages/list_product_by_category'
+import Basket from './pages/basket'
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { createStackNavigator } from "@react-navigation/stack";
 // import React, { useEffect } from 'react';
 
@@ -28,6 +30,7 @@ export default function App({navigation}) {
     <>
       <qoreContext.context.Provider value={{ client: qoreContext.client }}>
         <NavigationContainer>
+          {/* <Stack.Navigator screenOptions={AsyncStorage}> */}
           <Stack.Navigator>
             <Stack.Screen
               name="Login"
@@ -47,6 +50,10 @@ export default function App({navigation}) {
             <Stack.Screen
               name="List"
               component={ListDataProdukByCategory}
+            />
+            <Stack.Screen
+              name="Basket"
+              component={Basket}
             />
         </Stack.Navigator>
         </NavigationContainer>
