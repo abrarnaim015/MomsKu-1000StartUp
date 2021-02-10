@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View, Image, ImageBackground, Alert, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, View, Image, ImageBackground, TouchableOpacity } from "react-native";
 // import qoreContext from "../qoreContext";
 
 export default function HomePage({ route, navigation }) {

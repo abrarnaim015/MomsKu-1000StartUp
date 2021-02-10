@@ -19,11 +19,28 @@ declare module "@feedloop/qore-client" {
     productsCount: number;
   };
 
+  type BasketTableRow = {
+    id: string;
+    name: string;
+    idMembar: { nodes: IdMembarTableRow[] };
+    idProduct: { nodes: IdProductTableRow[] };
+    totalHari: number;
+    ongkir: number;
+    allTotal: number;
+    totalHargaSewa: number;
+    member2: { nodes: Member2TableRow[] };
+  };
+
   type MemberTableRow = {
     id: string;
     email: string;
     role: { id: string; displayField: string };
     password: string;
+    basket: { nodes: BasketTableRow[] };
+    alamat: string;
+    kodePoss: number;
+    product3: { nodes: Product3TableRow[] };
+    idBasket: { nodes: IdBasketTableRow[] };
   };
 
   type ProductTableRow = {
@@ -38,6 +55,8 @@ declare module "@feedloop/qore-client" {
     nameCategory: string;
     address: string;
     price: number;
+    basket1: { nodes: Basket1TableRow[] };
+    merchant: { nodes: MerchantTableRow[] };
   };
 
   type AllMemberViewRow = {
@@ -46,10 +65,16 @@ declare module "@feedloop/qore-client" {
       email: string;
       role: { id: string; displayField: string };
       password: string;
+      alamat: string;
+      kodePoss: number;
+      idBasket: { nodes: IdBasketTableRow[] };
     };
     write: {
       email: string;
       password: string;
+      alamat: string;
+      kodePoss: number;
+      idBasket: string[];
     };
     params: {};
     actions: {};
@@ -69,6 +94,7 @@ declare module "@feedloop/qore-client" {
       nameCategory: string;
       address: string;
       price: number;
+      merchant: { nodes: MerchantTableRow[] };
     };
     write: {
       name: string;
@@ -81,6 +107,7 @@ declare module "@feedloop/qore-client" {
       nameCategory: string;
       address: string;
       price: number;
+      merchant: string[];
     };
     params: {};
     actions: {};
@@ -118,10 +145,36 @@ declare module "@feedloop/qore-client" {
     forms: {};
   };
 
+  type AllBasketViewRow = {
+    read: {
+      id: string;
+      name: string;
+      idMembar: { nodes: IdMembarTableRow[] };
+      idProduct: { nodes: IdProductTableRow[] };
+      totalHari: number;
+      ongkir: number;
+      allTotal: number;
+      totalHargaSewa: number;
+    };
+    write: {
+      name: string;
+      idMembar: string[];
+      idProduct: string[];
+      totalHari: number;
+      ongkir: number;
+      allTotal: number;
+      totalHargaSewa: number;
+    };
+    params: {};
+    actions: {};
+    forms: {};
+  };
+
   type ProjectSchema = {
     allMember: AllMemberViewRow;
     allProduct: AllProductViewRow;
     allBrand: AllBrandViewRow;
     allCategory: AllCategoryViewRow;
+    allBasket: AllBasketViewRow;
   };
 }
