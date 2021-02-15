@@ -1,11 +1,12 @@
 import React from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert, Image, ImageBackground, Keyboard } from "react-native";
+import { useDispatch } from 'react-redux'
+import { setEmailUser } from '../store'
 import qoreContext from "../qoreContext";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { NavigationHelpersContext } from '@react-navigation/native';
 
 function LoginPage({navigation}) {
-  // const { data: DataAllMember } = qoreContext.view("allMember").useListRow()
+  const dispatch = useDispatch()
   const client = qoreContext.useClient();
   const Separator = () => (
     <View style={styles.separator} />
@@ -63,12 +64,17 @@ function LoginPage({navigation}) {
           dataLogin.Email.toLowerCase(),
           dataLogin.Password
         );
-        const Name = converName(dataLogin.Email)
+        // const Name = converName(dataLogin.Email)
         await AsyncStorage.setItem('token', token)
         // await AsyncStorage.setItem('NameUser', Name)
-        navigation.navigate('Home', {
-          nameUser: Name
-        })
+        Alert.alert(
+          "Hi Moms",
+          dataLogin.Email
+        )
+        // navigation.navigate('Home', {
+        //   nameUser: Name
+        // })
+        dispatch(setEmailUser(dataLogin.Email.toLowerCase()))
         setDataLogin({
           Email: '',
           Password: ''

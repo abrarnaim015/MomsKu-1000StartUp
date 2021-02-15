@@ -1,9 +1,11 @@
 import "react-native-get-random-values";
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import qoreContext from "./qoreContext"
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Provider } from 'react-redux'
+import Store from './store'
+import qoreContext from "./qoreContext"
 import LoginPage from "./pages/login"
 import HomePage from "./pages/home"
 import DetailProduct from './pages/detail_product'
@@ -28,35 +30,37 @@ export default function App({navigation}) {
 
   return (
     <>
-      <qoreContext.context.Provider value={{ client: qoreContext.client }}>
-        <NavigationContainer>
-          {/* <Stack.Navigator screenOptions={AsyncStorage}> */}
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Login"
-              component={LoginPage}
-              options={{ tabBarVisible: false }}
-              // options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Home"
-              component={HomePage}
-              // options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Detail"
-              component={DetailProduct}
-            />
-            <Stack.Screen
-              name="List"
-              component={ListDataProdukByCategory}
-            />
-            <Stack.Screen
-              name="Basket"
-              component={Basket}
-            />
-        </Stack.Navigator>
-        </NavigationContainer>
+      <qoreContext.context.Provider store={ Store } value={{ client: qoreContext.client }}>
+        <Provider store={ Store }>
+          <NavigationContainer>
+            {/* <Stack.Navigator screenOptions={AsyncStorage}> */}
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Login"
+                component={LoginPage}
+                options={{ tabBarVisible: false }}
+                // options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Home"
+                component={HomePage}
+                // options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Detail"
+                component={DetailProduct}
+              />
+              <Stack.Screen
+                name="List"
+                component={ListDataProdukByCategory}
+              />
+              <Stack.Screen
+                name="Basket"
+                component={Basket}
+              />
+          </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
       </qoreContext.context.Provider>
     </>
   );

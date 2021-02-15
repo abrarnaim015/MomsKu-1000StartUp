@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { setAllDataProduct, setAllDataBasket } from '../store'
 import { Text, StyleSheet, View, Image, ImageBackground, TouchableOpacity } from "react-native";
-// import qoreContext from "../qoreContext";
 
 export default function HomePage({ route, navigation }) {
+  // const dispatch = useDispatch()
   const { nameUser } = route.params
-  // const { data: AllDataProductByCategory } = qoreContext.view("allCategory").useListRow()
-  // console.log(AllDataProductByCategory, '<<<<<<')
   if(nameUser === '' || nameUser === null) {
     nameUser = 'Mamih'
   }
+
+  // const getDataProduct = useSelector((state) => state.allDataProduct)
+  // const getDataBasket = useSelector((state) => state.allDataBasket)
+
+  // const [dataProduct, setDataproduct] = React.useState([])
+  // const [dataBasket, setDataBasket] = React.useState([])
+  
+  // useEffect(() => {
+  //   dispatch(setAllDataProduct())
+  //   dispatch(setAllDataBasket())
+  // }, [input])
+
+  // function setAllData() {
+  //   setDataproduct()
+  //   setDataBasket()
+  // }
   
   function getDataByCategory(categoryOf) {
     navigation.navigate('List', {
