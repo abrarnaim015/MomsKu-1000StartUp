@@ -7,6 +7,8 @@ export default function() {
   const { data: AllDataBasket } = qoreContext.view("allBasket").useListRow()
   const { data: allMember } = qoreContext.view("allMember").useListRow()
   // console.log(AllDataBasket, '<<<<<<<<<<<')
+  const [userProduct, setUserProduct] = React.useState([])
+  const [userData, setUserData] = React.useState({})
   const [DataFilter, setDataFilter] = React.useState({
     name: '',
     price: 0,
@@ -67,7 +69,7 @@ export default function() {
     <>
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-        <View>
+        {/* <View>
           {AllDataBasket.map((task) => (
             <View>
               <Text>{JSON.stringify(task)}</Text>
@@ -81,8 +83,8 @@ export default function() {
               </View>
             </View>
           ))}
-        </View>
-        {/* <View>
+        </View> */}
+        <View>
           <View style={{ flexDirection: 'row', padding: 5, marginHorizontal: 15, marginVertical: 20 }}>
             <View style={{ display: 'flex', justifyContent: 'center'}}>
               <Image
@@ -156,7 +158,7 @@ export default function() {
             </View>
           </View>
           <View style={{ width: 500, marginTop: 10, borderBottomWidth: 1, borderBottomColor: '#DADADA' }}></View>
-        </View> */}
+        </View>
 
         <View style={{ display: 'flex', justifyContent: 'flex-start', marginVertical: 20 }}>
           <Text style={{ fontWeight: 'bold', textAlign: 'left' }}>Alamat Pengirim</Text>
