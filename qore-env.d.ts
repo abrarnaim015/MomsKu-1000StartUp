@@ -40,7 +40,7 @@ declare module "@feedloop/qore-client" {
     alamat: string;
     kodePoss: number;
     product3: { nodes: Product3TableRow[] };
-    idBasket: { nodes: IdBasketTableRow[] };
+    basketAktif: BasketAktifTableRow;
   };
 
   type ProductTableRow = {
@@ -67,14 +67,14 @@ declare module "@feedloop/qore-client" {
       password: string;
       alamat: string;
       kodePoss: number;
-      idBasket: { nodes: IdBasketTableRow[] };
+      basketAktif: BasketAktifTableRow;
     };
     write: {
       email: string;
       password: string;
       alamat: string;
       kodePoss: number;
-      idBasket: string[];
+      basketAktif: string[];
     };
     params: {};
     actions: {};
