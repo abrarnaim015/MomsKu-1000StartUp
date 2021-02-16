@@ -12,10 +12,9 @@ const initicalStore = {
 }
 
 
-export function setUserDataLogin() {
+export function setUserDataLogin(dataUser) {
   return((dispatch) => {
-    const { data: DataAllMember } = qoreContext.view("allMember").useListRow()
-    dispatch({ type: 'SET_USER_LOGIN', payload: DataAllMember })
+    dispatch({ type: 'SET_USER_LOGIN', payload: dataUser })
   })
 }
 
@@ -43,8 +42,8 @@ export function setAllDataBasket() {
 
 function Reducer(state = initicalStore, action) {
   if(action.type === 'SET_USER_LOGIN') {
-    const DataUserFind = action.payload.find(findUser => findUser.email === state.emailUser)
-    return { ...state, dataUser: DataUserFind }
+    // const DataUserFind = action.payload.find(findUser => findUser.email === state.emailUser)
+    return { ...state, dataUser: action.payload }
   }
   if(action.type === 'SET_EMAIL') {
     return { ...state, emailUser: action.payload }

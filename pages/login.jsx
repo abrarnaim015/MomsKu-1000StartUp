@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert, Image, ImageBackground, Keyboard } from "react-native";
 import { useDispatch } from 'react-redux'
-import { setEmailUser } from '../store'
+import { setEmailUser, setUserDataLogin } from '../store'
 import qoreContext from "../qoreContext";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import SyncStorage from 'sync-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LoginPage({navigation}) {
   const dispatch = useDispatch()
@@ -16,6 +17,11 @@ function LoginPage({navigation}) {
     Email: '',
     Password: ''
   });
+
+  const getDataUserLogin = async () => {
+    const { data: user } = await client.project.axios.get(`/me`);
+    dispatch(setUserDataLogin(user))
+  }
 
   function handleOnchange(dataValue) {
     let key = dataValue.name
@@ -49,6 +55,27 @@ function LoginPage({navigation}) {
         //   "Hi Moms",
         //   "Sorry Your Email and Password do not empty"
         // )
+
+        // ==============
+        
+        const token = await client.authenticate(
+          'test@momsku.com',
+          'momsku'
+        );
+        const Name = converName('test@momsku.com')
+        SyncStorage.set('token', token);
+        navigation.navigate('Home', {
+          nameUser: Name
+        })
+        dispatch(setEmailUser('test@momsku.com'))
+        getDataUserLogin()
+        setDataLogin({
+          Email: '',
+          Password: ''
+        })
+
+        // ===============
+
       } else if (dataLogin.Email === '') {
         Alert.alert(
           "Hi Moms",
@@ -64,17 +91,16 @@ function LoginPage({navigation}) {
           dataLogin.Email.toLowerCase(),
           dataLogin.Password
         );
-        // const Name = converName(dataLogin.Email)
-        await AsyncStorage.setItem('token', token)
+        const Name = converName(dataLogin.Email)
+        SyncStorage.set('token', token);
+        // window.localStorage.setItem('token', token)
+        // await AsyncStorage.setItem('token', token)
         // await AsyncStorage.setItem('NameUser', Name)
-        Alert.alert(
-          "Hi Moms",
-          dataLogin.Email
-        )
-        // navigation.navigate('Home', {
-        //   nameUser: Name
-        // })
+        navigation.navigate('Home', {
+          nameUser: Name
+        })
         dispatch(setEmailUser(dataLogin.Email.toLowerCase()))
+        getDataUserLogin()
         setDataLogin({
           Email: '',
           Password: ''

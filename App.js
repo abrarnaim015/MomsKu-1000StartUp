@@ -1,5 +1,5 @@
 import "react-native-get-random-values";
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,6 +11,7 @@ import HomePage from "./pages/home"
 import DetailProduct from './pages/detail_product'
 import ListDataProdukByCategory from './pages/list_product_by_category'
 import Basket from './pages/basket'
+import SyncStorage from 'sync-storage';
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { createStackNavigator } from "@react-navigation/stack";
 // import React, { useEffect } from 'react';
@@ -18,15 +19,18 @@ import Basket from './pages/basket'
 export default function App({navigation}) {
   // const Stack = createStackNavigator()
   const Stack = createBottomTabNavigator()
-
-  // useEffect( async () => {
-  //   const TokenUser = await AsyncStorage.getItem('token')
-  //   if(!TokenUser) {
-  //     navigation.navigate('Login')
-  //   } else {
-  //     navigation.navigate('Home')
-  //   }
-  // }, [])
+  
+  useEffect(() => {
+    (async () => {
+      const data = await SyncStorage.init();
+    })()
+    // const TokenUser = await AsyncStorage.getItem('token')
+    // if(!TokenUser) {
+    //   navigation.navigate('Login')
+    // } else {
+    //   navigation.navigate('Home')
+    // }
+  }, [])
 
   return (
     <>
