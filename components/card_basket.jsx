@@ -49,10 +49,6 @@ const CardBasket = ({ basketId }) => {
 
   return (
     <>
-      {/* <View>
-        <Text>{JSON.stringify(dataProduct, null, 2)}</Text>
-        <Text>{'\n'}</Text>
-      </View> */}
       <View>
         <View style={{ flexDirection: 'row', padding: 5, marginHorizontal: 15, marginVertical: 20 }}>
           <View style={{ display: 'flex', justifyContent: 'center'}}>

@@ -11,6 +11,14 @@ declare module "@feedloop/qore-client" {
     product: { nodes: ProductTableRow[] };
   };
 
+  type CityTableRow = {
+    id: string;
+    name: string;
+    longitude: string;
+    langitude: string;
+    member2: { nodes: Member2TableRow[] };
+  };
+
   type CategoryTableRow = {
     id: string;
     name: string;
@@ -28,7 +36,6 @@ declare module "@feedloop/qore-client" {
     ongkir: number;
     allTotal: number;
     totalHargaSewa: number;
-    member2: { nodes: Member2TableRow[] };
   };
 
   type MemberTableRow = {
@@ -40,7 +47,12 @@ declare module "@feedloop/qore-client" {
     alamat: string;
     kodePoss: number;
     product3: { nodes: Product3TableRow[] };
-    basketAktif: BasketAktifTableRow;
+    gender: string;
+    phone: number;
+    profession: string;
+    ktpImage: string;
+    cityId: CityIdTableRow;
+    fullName: string;
   };
 
   type ProductTableRow = {
@@ -67,14 +79,24 @@ declare module "@feedloop/qore-client" {
       password: string;
       alamat: string;
       kodePoss: number;
-      basketAktif: BasketAktifTableRow;
+      gender: string;
+      phone: number;
+      profession: string;
+      ktpImage: string;
+      cityId: CityIdTableRow;
+      fullName: string;
     };
     write: {
       email: string;
       password: string;
       alamat: string;
       kodePoss: number;
-      basketAktif: string[];
+      gender: string;
+      phone: number;
+      profession: string;
+      ktpImage: string;
+      cityId: string[];
+      fullName: string;
     };
     params: {};
     actions: {};
@@ -170,11 +192,29 @@ declare module "@feedloop/qore-client" {
     forms: {};
   };
 
+  type AllCityViewRow = {
+    read: {
+      id: string;
+      name: string;
+      longitude: string;
+      langitude: string;
+    };
+    write: {
+      name: string;
+      longitude: string;
+      langitude: string;
+    };
+    params: {};
+    actions: {};
+    forms: {};
+  };
+
   type ProjectSchema = {
     allMember: AllMemberViewRow;
     allProduct: AllProductViewRow;
     allBrand: AllBrandViewRow;
     allCategory: AllCategoryViewRow;
     allBasket: AllBasketViewRow;
+    allCity: AllCityViewRow;
   };
 }
