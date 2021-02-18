@@ -4,7 +4,7 @@ import SearchableDropdown from "react-native-searchable-dropdown";
 import { useSelector, useDispatch } from 'react-redux';
 import { setRegisProv, setRegisKab, setRegisKec, setRegisKel, submitRegister,  getKodePoss} from "../store";
 
-export default function RegisterPage() {
+export default function RegisterPage({ navigation }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -101,6 +101,16 @@ export default function RegisterPage() {
       kodePoss: KodePoss,
       email: emailUser
     }))
+    navigation.navigate('Login')
+    setFullName('')
+    setNotelfon('')
+    setEmailUser('')
+    setNamJalan('')
+    setPassReg('')
+    setProv({id: 0, name: ''})
+    setKab({id: 0, name: ''})
+    setKec({id: 0, name: ''})
+    setKel({id: 0, name: ''})
   }
 
   return (
