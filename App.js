@@ -5,13 +5,14 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux'
 import Store from './store'
+import SyncStorage from 'sync-storage';
 import qoreContext from "./qoreContext"
 import LoginPage from "./pages/login"
 import HomePage from "./pages/home"
 import DetailProduct from './pages/detail_product'
 import ListDataProdukByCategory from './pages/list_product_by_category'
 import Basket from './pages/basket'
-import SyncStorage from 'sync-storage';
+import RegisterPage from './pages/register'
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { createStackNavigator } from "@react-navigation/stack";
 // import React, { useEffect } from 'react';
@@ -37,18 +38,15 @@ export default function App({navigation}) {
       <qoreContext.context.Provider store={ Store } value={{ client: qoreContext.client }}>
         <Provider store={ Store }>
           <NavigationContainer>
-            {/* <Stack.Navigator screenOptions={AsyncStorage}> */}
             <Stack.Navigator>
               <Stack.Screen
                 name="Login"
                 component={LoginPage}
                 options={{ tabBarVisible: false }}
-                // options={{ headerShown: false }}
               />
               <Stack.Screen
                 name="Home"
                 component={HomePage}
-                // options={{ headerShown: false }}
               />
               <Stack.Screen
                 name="Detail"
@@ -61,6 +59,11 @@ export default function App({navigation}) {
               <Stack.Screen
                 name="Basket"
                 component={Basket}
+              />
+              <Stack.Screen
+                name="Register"
+                component={RegisterPage}
+                options={{ tabBarVisible: false }}
               />
           </Stack.Navigator>
           </NavigationContainer>

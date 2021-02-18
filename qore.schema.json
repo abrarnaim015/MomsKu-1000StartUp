@@ -36,6 +36,48 @@
       ]
     },
     {
+      "name": "City",
+      "type": null,
+      "id": "city",
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "name",
+          "displayField": true
+        },
+        {
+          "name": "longitude",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "longitude",
+          "displayField": false
+        },
+        {
+          "name": "langitude",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "langitude",
+          "displayField": false
+        },
+        {
+          "name": "member 2",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "member2",
+          "table": "member",
+          "column": "cityId",
+          "multiple": true,
+          "displayField": false
+        }
+      ]
+    },
+    {
       "name": "Category",
       "type": null,
       "id": "category",
@@ -147,17 +189,6 @@
           "defaultValue": null,
           "id": "totalHargaSewa",
           "displayField": false
-        },
-        {
-          "name": "member 2",
-          "type": "relation",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "member2",
-          "table": "member",
-          "column": "basketAktif",
-          "multiple": true,
-          "displayField": false
         }
       ]
     },
@@ -228,14 +259,55 @@
           "displayField": false
         },
         {
-          "name": "basket_aktif",
+          "name": "gender",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "gender",
+          "displayField": false
+        },
+        {
+          "name": "phone",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "0",
+          "id": "phone",
+          "displayField": false
+        },
+        {
+          "name": "profession",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "profession",
+          "displayField": false
+        },
+        {
+          "name": "ktp_image",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": "image",
+          "id": "ktpImage",
+          "displayField": false
+        },
+        {
+          "name": "city_Id",
           "type": "relation",
           "deletionProtection": false,
           "defaultValue": null,
-          "id": "basketAktif",
-          "table": "basket",
+          "id": "cityId",
+          "table": "city",
           "column": "member2",
           "multiple": false,
+          "displayField": false
+        },
+        {
+          "name": "full_name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "fullName",
           "displayField": false
         }
       ]
@@ -514,14 +586,60 @@
           "design": null
         },
         {
-          "name": "basket_aktif",
+          "name": "gender",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "gender",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "phone",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "0",
+          "id": "phone",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "profession",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "profession",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "ktp_image",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": "image",
+          "id": "ktpImage",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "city_Id",
           "type": "relation",
           "deletionProtection": false,
           "defaultValue": null,
-          "id": "basketAktif",
-          "table": "basket",
+          "id": "cityId",
+          "table": "city",
           "column": "member2",
           "multiple": false,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "full_name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "fullName",
           "displayField": false,
           "design": null
         }
@@ -789,6 +907,43 @@
           "deletionProtection": false,
           "defaultValue": null,
           "id": "totalHargaSewa",
+          "displayField": false,
+          "design": null
+        }
+      ],
+      "design": null
+    },
+    {
+      "id": "allCity",
+      "name": "All City",
+      "tableId": "city",
+      "parameters": [],
+      "sorts": [],
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "name",
+          "displayField": true,
+          "design": null
+        },
+        {
+          "name": "longitude",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "longitude",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "langitude",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "langitude",
           "displayField": false,
           "design": null
         }

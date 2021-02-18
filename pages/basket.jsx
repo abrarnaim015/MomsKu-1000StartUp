@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { View, Text, StyleSheet, StatusBar, SafeAreaView, ScrollView, Button, Image } from 'react-native'
 import CardBasket from '../components/card_basket'
@@ -6,7 +6,7 @@ import CardBasket from '../components/card_basket'
 
 export default function Basket() {
   const { data: dataUser } = useSelector((state) => state.dataUser)
-  console.log(dataUser, '<<<<<<< data user form basket page')
+  // console.log(dataUser, '<<<<<<< data user form basket page')
   return (
     <>
       <SafeAreaView style={styles.container}>

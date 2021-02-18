@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, Image, ImageBackground, Keyboard } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Alert, Image, ImageBackground, Keyboard, TouchableOpacity } from "react-native";
 import { useDispatch } from 'react-redux'
 import { setEmailUser, setUserDataLogin } from '../store'
 import qoreContext from "../qoreContext";
@@ -9,6 +9,7 @@ import SyncStorage from 'sync-storage';
 function LoginPage({navigation}) {
   const dispatch = useDispatch()
   const client = qoreContext.useClient();
+  
   const Separator = () => (
     <View style={styles.separator} />
   );
@@ -158,7 +159,10 @@ function LoginPage({navigation}) {
           </View>
           <View>
             <View style={styles.textRegis}>
-              <Text style={{ textAlign: 'center' }}>Belum pernah mendaftar?   <Text style={{textAlign: 'center', color: '#F97897'}}>Silahkan daftar di sini</Text></Text>
+              <Text style={{ textAlign: 'center' }}>Belum pernah mendaftar?</Text>
+              <TouchableOpacity activeOpacity={ .5 } onPress={() => navigation.navigate('Register')}>
+                <Text style={{textAlign: 'center', color: '#F97897', marginVertical: 5 }}>Silahkan daftar di sini</Text>
+              </TouchableOpacity>
             </View>
             <View>
               <View style={styles.boxContak}>
@@ -245,7 +249,7 @@ const styles = StyleSheet.create({
       marginBottom: 50
     },
     textRegis: {
-      marginTop: 20,
+      marginTop: 10,
       textAlign: 'center'
     },
     regis: {
