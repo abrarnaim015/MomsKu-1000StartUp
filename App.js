@@ -2,8 +2,10 @@ import "react-native-get-random-values";
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native"
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux'
+import { createStackNavigator } from "@react-navigation/stack";
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
+import { Home, ShoppingBag, User } from "react-native-feather";
 import Store from './store'
 import SyncStorage from 'sync-storage';
 import qoreContext from "./qoreContext"
@@ -13,13 +15,13 @@ import DetailProduct from './pages/detail_product'
 import ListDataProdukByCategory from './pages/list_product_by_category'
 import Basket from './pages/basket'
 import RegisterPage from './pages/register'
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { createStackNavigator } from "@react-navigation/stack";
 // import React, { useEffect } from 'react';
 
 export default function App({navigation}) {
-  // const Stack = createStackNavigator()
-  const Stack = createBottomTabNavigator()
+  const Stack = createStackNavigator()
+  const Tab = createMaterialBottomTabNavigator()
   
   useEffect(() => {
     (async () => {
@@ -33,39 +35,84 @@ export default function App({navigation}) {
     // }
   }, [])
 
+  const loginStackNavigator = () => {
+    return (
+      <Stack.Navigator
+        headerMode={'none'}
+      >
+        <Stack.Screen
+          name="Login"
+          component={LoginPage}
+          // options={{ tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterPage}
+          // options={{ tabBarVisible: false }}
+        />
+      </Stack.Navigator>
+    )
+  }
+
+  const homeStackNavigator = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+          // headerMode={'none'}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="List"
+          component={ListDataProdukByCategory}
+          // headerMode={{ color: 'red' }}
+          options={{ headerStyle: { backgroundColor: '#46CEC5' }, headerTintColor: 'white', headerTitleAlign: 'center', headerTitle: 'List Product' }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={DetailProduct}
+          options={{ headerStyle: { backgroundColor: '#46CEC5' }, headerTintColor: 'white', headerTitleAlign: 'center', headerTitle: 'Detai Product' }}
+        />
+      </Stack.Navigator>
+    )
+  }
+
   return (
     <>
       <qoreContext.context.Provider store={ Store } value={{ client: qoreContext.client }}>
         <Provider store={ Store }>
           <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen
+            <Tab.Navigator barStyle={{ backgroundColor: '#ffff' }}>
+              <Tab.Screen
                 name="Login"
-                component={LoginPage}
-                options={{ tabBarVisible: false }}
+                component={loginStackNavigator}
+                options={{ tabBarIcon: User, tabBarLabel: 'My Accont' }}
               />
-              <Stack.Screen
-                name="Home"
-                component={HomePage}
+              <Tab.Screen
+                name="HomeTab"
+                component={homeStackNavigator}
+                options={{ tabBarIcon: Home, tabBarLabel: 'Home' }}
               />
-              <Stack.Screen
-                name="Detail"
-                component={DetailProduct}
-              />
-              <Stack.Screen
-                name="List"
-                component={ListDataProdukByCategory}
-              />
-              <Stack.Screen
+              <Tab.Screen
                 name="Basket"
                 component={Basket}
+                options={{ tabBarIcon: ShoppingBag, tabBarLabel: 'My Cart' }}
               />
-              <Stack.Screen
+              {/* <Tab.Screen
+                name="Detail"
+                component={DetailProduct}
+              /> */}
+              {/* <Tab.Screen
+                name="List"
+                component={ListDataProdukByCategory}
+              /> */}
+              {/* <Tab.Screen
                 name="Register"
                 component={RegisterPage}
                 options={{ tabBarVisible: false }}
-              />
-          </Stack.Navigator>
+              /> */}
+          </Tab.Navigator>
           </NavigationContainer>
         </Provider>
       </qoreContext.context.Provider>

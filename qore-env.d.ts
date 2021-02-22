@@ -15,8 +15,9 @@ declare module "@feedloop/qore-client" {
     id: string;
     name: string;
     longitude: string;
-    langitude: string;
+    latitude: string;
     member2: { nodes: Member2TableRow[] };
+    product4: { nodes: Product4TableRow[] };
   };
 
   type CategoryTableRow = {
@@ -69,38 +70,8 @@ declare module "@feedloop/qore-client" {
     price: number;
     basket1: { nodes: Basket1TableRow[] };
     merchant: { nodes: MerchantTableRow[] };
-  };
-
-  type AllMemberViewRow = {
-    read: {
-      id: string;
-      email: string;
-      role: { id: string; displayField: string };
-      password: string;
-      alamat: string;
-      kodePoss: number;
-      gender: string;
-      phone: number;
-      profession: string;
-      ktpImage: string;
-      cityId: CityIdTableRow;
-      fullName: string;
-    };
-    write: {
-      email: string;
-      password: string;
-      alamat: string;
-      kodePoss: number;
-      gender: string;
-      phone: number;
-      profession: string;
-      ktpImage: string;
-      cityId: string[];
-      fullName: string;
-    };
-    params: {};
-    actions: {};
-    forms: {};
+    city: CityTableRow;
+    statusProduct: string;
   };
 
   type AllProductViewRow = {
@@ -110,26 +81,30 @@ declare module "@feedloop/qore-client" {
       brand: { nodes: BrandTableRow[] };
       category: CategoryTableRow;
       image: string;
-      startDate: Date;
-      endDate: Date;
-      description: string;
       nameCategory: string;
       address: string;
       price: number;
       merchant: { nodes: MerchantTableRow[] };
+      city: CityTableRow;
+      description: string;
+      startDate: Date;
+      endDate: Date;
+      statusProduct: string;
     };
     write: {
       name: string;
       brand: string[];
       category: string[];
       image: string;
-      startDate: Date;
-      endDate: Date;
-      description: string;
       nameCategory: string;
       address: string;
       price: number;
       merchant: string[];
+      city: string[];
+      description: string;
+      startDate: Date;
+      endDate: Date;
+      statusProduct: string;
     };
     params: {};
     actions: {};
@@ -197,12 +172,44 @@ declare module "@feedloop/qore-client" {
       id: string;
       name: string;
       longitude: string;
-      langitude: string;
+      latitude: string;
     };
     write: {
       name: string;
       longitude: string;
-      langitude: string;
+      latitude: string;
+    };
+    params: {};
+    actions: {};
+    forms: {};
+  };
+
+  type AllMemberViewRow = {
+    read: {
+      id: string;
+      email: string;
+      role: { id: string; displayField: string };
+      password: string;
+      alamat: string;
+      kodePoss: number;
+      gender: string;
+      phone: number;
+      profession: string;
+      ktpImage: string;
+      cityId: CityIdTableRow;
+      fullName: string;
+    };
+    write: {
+      email: string;
+      password: string;
+      alamat: string;
+      kodePoss: number;
+      gender: string;
+      phone: number;
+      profession: string;
+      ktpImage: string;
+      cityId: string[];
+      fullName: string;
     };
     params: {};
     actions: {};
@@ -210,11 +217,11 @@ declare module "@feedloop/qore-client" {
   };
 
   type ProjectSchema = {
-    allMember: AllMemberViewRow;
     allProduct: AllProductViewRow;
     allBrand: AllBrandViewRow;
     allCategory: AllCategoryViewRow;
     allBasket: AllBasketViewRow;
     allCity: AllCityViewRow;
+    allMember: AllMemberViewRow;
   };
 }

@@ -4,34 +4,40 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollVi
 export default function DetailProduct({ route }) {
   const { dataDetail, harga } = route.params
   const [DataDetail, setDataDetail] = React.useState({})
+  const [statusProduct, setStatusProduct] = React.useState('')
+  const [styleStatus, setStyleStatus] = React.useState(true)
+  console.log(statusProduct, '<<<<<<<<<<<<<<<<<')
 
   useEffect(() => {
     setDataDetail(dataDetail)
+    setStatusProduct(dataDetail.statusProduct)
+    if(dataDetail.statusProduct === 'Tersedia') {
+      setStyleStatus(true)
+    } else {
+      setStyleStatus(false)
+    }
   }, [dataDetail])
 
 
-  function cekDate(start, end) {
-    const dateStart = new Date(start)
-    const dateEnd = new Date(end)
-    const nowDate = new Date()
-    let output = nowDate > dateStart && nowDate < dateEnd
-    if(output) {
-      return 'Tersedia'
-    } else {
-      return 'Tidak Tersedia'
-    }
-  }
+  // function cekDate(start, end) {
+  //   const dateStart = new Date(start)
+  //   const dateEnd = new Date(end)
+  //   const nowDate = new Date()
+  //   let output = nowDate > dateStart && nowDate < dateEnd
+  //   if(output) {
+  //     return 'Tersedia'
+  //   } else {
+  //     return 'Tidak Tersedia'
+  //   }
+  // }
 
   return (
     <>
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          {/* <View>
-            <Text>{JSON.stringify(DataDetail)}</Text>
-          </View> */}
-          <View style={{ marginRight: 235, marginTop: 20 }}>
-            <View style={styles.BoxStatusProduct}>
-              <Text style={styles.TextStatus}>{cekDate(DataDetail.startDate, DataDetail.endDate)}</Text>
+          <View style={[styleStatus? styles.widthStatusTru : styles.widthStatusFalse]}>
+            <View style={[styleStatus? styles.BoxStatusProductTrue : styles.BoxStatusProductFalse]}>
+              <Text style={[styleStatus? styles.TextStatusTrue : styles.TextStatusFalse]}>{statusProduct}</Text>
             </View>
           </View>
           <View style={{ marginTop: 5, marginBottom: 10 }}>
@@ -44,7 +50,7 @@ export default function DetailProduct({ route }) {
           <View>
             <View style={{ justifyContent: 'flex-start', marginRight: 100 }}>
               <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{DataDetail.name}</Text>
-              <Text>{DataDetail.address}</Text>
+              <Text>{DataDetail.address || 'Kosong dari Qore' }</Text>
               <Text style={{ color: '#E79933', fontSize: 20, fontWeight: 'bold' }}>IRD {harga} / 7 Days</Text>
             </View>
           </View>
@@ -83,7 +89,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    paddingTop: StatusBar.currentHeight
+    paddingTop: 10
+    // paddingTop: StatusBar.currentHeight
     // justifyContent: 'center',
     // alignItems: 'center',
     // flexDirection: 'column',
@@ -91,13 +98,22 @@ const styles = StyleSheet.create({
   scrollView: {
     paddingHorizontal: 20
   },
-  BoxStatusProduct: {
+  BoxStatusProductTrue: {
     backgroundColor: '#E2F3E6',
     borderRadius: 20,
     padding: 5
   },
-  TextStatus: {
+  TextStatusTrue: {
     color: '#6FC783',
+    marginHorizontal: 10
+  },
+  BoxStatusProductFalse: {
+    backgroundColor: '#FBD6E6',
+    borderRadius: 20,
+    padding: 5
+  },
+  TextStatusFalse: {
+    color: '#F85483',
     marginHorizontal: 10
   },
   button: {
@@ -118,4 +134,10 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: 'bold'
   },
+  widthStatusTru: {
+    marginRight: 235
+  },
+  widthStatusFalse: {
+    marginRight: 200
+  }
 })

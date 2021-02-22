@@ -45,17 +45,17 @@ export default function ListProductByCategory({ route, navigation }) {
     return finalOutput
   }
 
-  function cekDate(start, end) {
-    const dateStart = new Date(start)
-    const dateEnd = new Date(end)
-    const nowDate = new Date()
-    let output = nowDate > dateStart && nowDate < dateEnd
-    if(output) {
-      return 'Tersedia'
-    } else {
-      return 'Tidak Tersedia'
-    }
-  }
+  // function cekDate(start, end) {
+  //   const dateStart = new Date(start)
+  //   const dateEnd = new Date(end)
+  //   const nowDate = new Date()
+  //   let output = nowDate > dateStart && nowDate < dateEnd
+  //   if(output) {
+  //     return 'Tersedia'
+  //   } else {
+  //     return 'Tidak Tersedia'
+  //   }
+  // }
 
   function getDataDetail(dataDetail, harga) {
     navigation.navigate('Detail', { dataDetail, harga })
@@ -86,8 +86,8 @@ export default function ListProductByCategory({ route, navigation }) {
                   </View>
                   <View style={{ display: 'flex', justifyContent: 'flex-end', paddingLeft: 5 }}>
                     <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{DataFilter.name}</Text>
-                    <Text style={{ color: '#45C78D' }}>{cekDate(DataFilter.startDate, DataFilter.endDate)}</Text>
-                    <Text>{DataFilter.address}</Text>
+                    <Text style={{ color: '#45C78D' }}>{DataFilter.statusProduct}</Text>
+                    <Text>{DataFilter.address || 'Kosong dari Qore' }</Text>
                     <Text style={{ fontWeight: 'bold', color: '#ECB14C', fontSize: 15 }}>IRD {converNum(DataFilter.price)} / 7 Hari</Text>
                   </View>
                 </View>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    paddingTop: StatusBar.currentHeight
+    // paddingTop: StatusBar.currentHeight
   },
   scrollView: {
     paddingHorizontal: 20
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4F4F4',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    // marginTop: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

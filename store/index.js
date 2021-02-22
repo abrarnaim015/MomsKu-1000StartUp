@@ -16,6 +16,7 @@ const initicalStore = {
   KodePossRegister: ''
 }
 
+
 export function setRegisProv() {
   return((dispatch) => {
     axios({
@@ -135,7 +136,7 @@ export function submitRegister(datNewUser) {
         profession: 'test',
         phone: datNewUser.phone,
         password: datNewUser.password,
-        kodePoss: datNewUser.kodePoss,
+        kodePoss: datNewUser.kodePoss || 'fail',
         gender: 'test',
         email: datNewUser.email,
         role: 'customer'
@@ -154,11 +155,10 @@ export function submitRegister(datNewUser) {
 export function getKodePoss(dataAlamat) {
   return((dispatch) => {
     axios({
-      url: `http://kodepos.herokuapp.com/?q=${dataAlamat}`,
+      url: `https://kodepos.herokuapp.com/search?q=${dataAlamat}`,
       method: 'GET'
     })
     .then(({ data }) => {
-      console.log(data, '<<<<<<<<<XXXXXXXX Kode Poss')
       dispatch({ type: 'SET_KODE_POSS', payload: data.data[0].postalcode })
     })
     .catch(console.log)
