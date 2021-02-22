@@ -7,8 +7,6 @@ const CardBasket = ({ basketId }) => {
   .view('allProduct')
   .useGetRow(basketId)
 
-  // console.log(dataProduct, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
-
   if(!dataProduct) {
     return (
       <View>

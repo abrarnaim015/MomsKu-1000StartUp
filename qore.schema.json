@@ -57,11 +57,11 @@
           "displayField": false
         },
         {
-          "name": "langitude",
+          "name": "latitude",
           "type": "text",
           "deletionProtection": false,
           "defaultValue": null,
-          "id": "langitude",
+          "id": "latitude",
           "displayField": false
         },
         {
@@ -72,6 +72,17 @@
           "id": "member2",
           "table": "member",
           "column": "cityId",
+          "multiple": true,
+          "displayField": false
+        },
+        {
+          "name": "Product 4",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "product4",
+          "table": "product",
+          "column": "city",
           "multiple": true,
           "displayField": false
         }
@@ -425,11 +436,80 @@
           "column": "product3",
           "multiple": true,
           "displayField": false
+        },
+        {
+          "name": "City",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "city",
+          "table": "city",
+          "column": "product4",
+          "multiple": false,
+          "displayField": false
+        },
+        {
+          "name": "status_product",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": "Tersedia",
+          "id": "statusProduct",
+          "displayField": false
         }
       ]
     }
   ],
   "roles": [
+    {
+      "name": "customer",
+      "isAdmin": false,
+      "isEditor": false,
+      "isPublic": false,
+      "permissions": [
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allProduct"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allBrand"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allCategory"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allBasket"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allMember"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allCity"
+        }
+      ]
+    },
     {
       "name": "public",
       "isAdmin": false,
@@ -494,158 +574,10 @@
           "viewId": "allBasket"
         }
       ]
-    },
-    {
-      "name": "customer",
-      "isAdmin": false,
-      "isEditor": false,
-      "isPublic": false,
-      "permissions": [
-        {
-          "insert": false,
-          "select": true,
-          "update": false,
-          "delete": false,
-          "viewId": "allProduct"
-        },
-        {
-          "insert": false,
-          "select": true,
-          "update": false,
-          "delete": false,
-          "viewId": "allBrand"
-        },
-        {
-          "insert": false,
-          "select": true,
-          "update": false,
-          "delete": false,
-          "viewId": "allCategory"
-        },
-        {
-          "insert": false,
-          "select": true,
-          "update": false,
-          "delete": false,
-          "viewId": "allBasket"
-        }
-      ]
     }
   ],
   "forms": [],
   "views": [
-    {
-      "id": "allMember",
-      "name": "All member",
-      "tableId": "member",
-      "parameters": [],
-      "sorts": [],
-      "fields": [
-        {
-          "name": "email",
-          "type": "text",
-          "deletionProtection": true,
-          "defaultValue": null,
-          "id": "email",
-          "displayField": true,
-          "design": null
-        },
-        {
-          "name": "role",
-          "type": "role",
-          "deletionProtection": true,
-          "defaultValue": null,
-          "id": "role",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "password",
-          "type": "password",
-          "deletionProtection": false,
-          "id": "password",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "alamat",
-          "type": "text",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "alamat",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "kode_Poss",
-          "type": "number",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "kodePoss",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "gender",
-          "type": "text",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "gender",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "phone",
-          "type": "number",
-          "deletionProtection": false,
-          "defaultValue": "0",
-          "id": "phone",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "profession",
-          "type": "text",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "profession",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "ktp_image",
-          "type": "file",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "fileType": "image",
-          "id": "ktpImage",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "city_Id",
-          "type": "relation",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "cityId",
-          "table": "city",
-          "column": "member2",
-          "multiple": false,
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "full_name",
-          "type": "text",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "fullName",
-          "displayField": false,
-          "design": null
-        }
-      ],
-      "design": null
-    },
     {
       "id": "allProduct",
       "name": "All Product",
@@ -697,33 +629,6 @@
           "design": null
         },
         {
-          "name": "start_date",
-          "type": "date",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "startDate",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "end_date",
-          "type": "date",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "endDate",
-          "displayField": false,
-          "design": null
-        },
-        {
-          "name": "description",
-          "type": "text",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "description",
-          "displayField": false,
-          "design": null
-        },
-        {
           "name": "nameCategory",
           "type": "text",
           "deletionProtection": false,
@@ -759,6 +664,54 @@
           "table": "member",
           "column": "product3",
           "multiple": true,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "City",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "city",
+          "table": "city",
+          "column": "product4",
+          "multiple": false,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "description",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "startDate",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "endDate",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "status_product",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": "Tersedia",
+          "id": "statusProduct",
           "displayField": false,
           "design": null
         }
@@ -939,11 +892,123 @@
           "design": null
         },
         {
-          "name": "langitude",
+          "name": "latitude",
           "type": "text",
           "deletionProtection": false,
           "defaultValue": null,
-          "id": "langitude",
+          "id": "latitude",
+          "displayField": false,
+          "design": null
+        }
+      ],
+      "design": null
+    },
+    {
+      "id": "allMember",
+      "name": "All member",
+      "tableId": "member",
+      "parameters": [],
+      "sorts": [],
+      "fields": [
+        {
+          "name": "email",
+          "type": "text",
+          "deletionProtection": true,
+          "defaultValue": null,
+          "id": "email",
+          "displayField": true,
+          "design": null
+        },
+        {
+          "name": "role",
+          "type": "role",
+          "deletionProtection": true,
+          "defaultValue": null,
+          "id": "role",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "deletionProtection": false,
+          "id": "password",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "alamat",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "alamat",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "kode_Poss",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "kodePoss",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "gender",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "gender",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "phone",
+          "type": "number",
+          "deletionProtection": false,
+          "defaultValue": "0",
+          "id": "phone",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "profession",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "profession",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "ktp_image",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": "image",
+          "id": "ktpImage",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "city_Id",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "cityId",
+          "table": "city",
+          "column": "member2",
+          "multiple": false,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "full_name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "fullName",
           "displayField": false,
           "design": null
         }

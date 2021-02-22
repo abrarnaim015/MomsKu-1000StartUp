@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert, Image, ImageBackground, Keyboard, TouchableOpacity } from "react-native";
 import { useDispatch } from 'react-redux'
-import { setEmailUser, setUserDataLogin } from '../store'
+import { setUserDataLogin } from '../store'
 import qoreContext from "../qoreContext";
 import SyncStorage from 'sync-storage';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -33,43 +33,37 @@ function LoginPage({navigation}) {
     })
   }
 
-  function converName(em) {
-    let name = ''
-    for(let i = 0; i < em.length; i++) {
-      if(em[i] !== '@') {
-        name += em[i]
-      } else if(em[i] === '@') {
-        break
-      }
-    }
-    return name
-  }
+  // function converName(em) {
+  //   let name = ''
+  //   for(let i = 0; i < em.length; i++) {
+  //     if(em[i] !== '@') {
+  //       name += em[i]
+  //     } else if(em[i] === '@') {
+  //       break
+  //     }
+  //   }
+  //   return name
+  // }
   
   const handleSubmitLogin =  async () => {
     try {
       Keyboard.dismiss()
       if(dataLogin.Email === '' && dataLogin.Password === '') {
-        navigation.navigate('Home', {
-          nameUser: 'Mamih'
-        })
         // Alert.alert(
         //   "Hi Moms",
         //   "Sorry Your Email and Password do not empty"
         // )
 
         // ==============
-        
         const token = await client.authenticate(
-          'test@momsku.com',
+          'yura@momsku.com',
           'momsku'
         );
-        const Name = converName('test@momsku.com')
         SyncStorage.set('token', token);
-        navigation.navigate('Home', {
-          nameUser: Name
+        await getDataUserLogin()
+        navigation.navigate('HomeTab', { 
+          screen: 'Home'
         })
-        dispatch(setEmailUser('test@momsku.com'))
-        getDataUserLogin()
         setDataLogin({
           Email: '',
           Password: ''
@@ -92,16 +86,11 @@ function LoginPage({navigation}) {
           dataLogin.Email.toLowerCase(),
           dataLogin.Password
         );
-        const Name = converName(dataLogin.Email)
         SyncStorage.set('token', token);
-        // window.localStorage.setItem('token', token)
-        // await AsyncStorage.setItem('token', token)
-        // await AsyncStorage.setItem('NameUser', Name)
-        navigation.navigate('Home', {
-          nameUser: Name
+        await getDataUserLogin()
+        navigation.navigate('HomeTab', { 
+          screen: 'Home'
         })
-        dispatch(setEmailUser(dataLogin.Email.toLowerCase()))
-        getDataUserLogin()
         setDataLogin({
           Email: '',
           Password: ''
