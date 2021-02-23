@@ -6,7 +6,6 @@ export default function DetailProduct({ route }) {
   const [DataDetail, setDataDetail] = React.useState({})
   const [statusProduct, setStatusProduct] = React.useState('')
   const [styleStatus, setStyleStatus] = React.useState(true)
-  console.log(statusProduct, '<<<<<<<<<<<<<<<<<')
 
   useEffect(() => {
     setDataDetail(dataDetail)
