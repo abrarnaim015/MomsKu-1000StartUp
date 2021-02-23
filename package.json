@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/vector-icons": "^12.0.3",
     "@feedloop/qore-client": "^0.1.33",
     "@feedloop/qore-react": "^0.1.33",
     "@react-native-async-storage/async-storage": "^1.13.4",

@@ -1,22 +1,37 @@
 import React, { useEffect } from 'react'
 import qoreContext from '../qoreContext'
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
+// import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar, Image, TouchableOpacity } from 'react-native'
 
 export default function ListProductByCategory({ route, navigation }) {
   const { byCategory } = route.params
   const { data: AllDataProductByCategory } = qoreContext.view("allProduct").useListRow()
   const [datFilterByCategory, setDatFilterByCategory] = React.useState([])
-
+  const [urutData, setUrutData] = React.useState(0)
+  const [statusUrutUp, setStatusUrutUp] = React.useState(false)
+  const [statusUrutDown, setStatusUrutDown] = React.useState(false)
+  
   useEffect(() => {
     if(AllDataProductByCategory !== []) {
       filterData(AllDataProductByCategory)
     } 
-  }, [AllDataProductByCategory, byCategory])
+  }, [AllDataProductByCategory, byCategory, urutData])
   
   const filterData = (async(dataFilter) => {
     try {
       const newData = await dataFilter.filter(indexData => indexData.nameCategory === byCategory)
-      setDatFilterByCategory(newData)
+      if(urutData === 0) {
+        setDatFilterByCategory(newData)
+      } else if(urutData !== 0 && urutData%2 === 0) {
+        await setDatFilterByCategory(newData.sort((a, b) => a.price - b.price))
+        setStatusUrutUp(true)
+        setStatusUrutDown(false)
+      } else if(urutData !== 0 && urutData%2 !== 0) {
+        await setDatFilterByCategory(newData.sort((a, b) => b.price - a.price))
+        setStatusUrutUp(false)
+        setStatusUrutDown(true)
+      }
     } catch (err) {
       console.log(err)
     }
@@ -69,9 +84,13 @@ export default function ListProductByCategory({ route, navigation }) {
           <View style={{ borderRightWidth: 1, borderColor: '#DADADA' }}>
             <Text style={{ textAlign: 'center', marginHorizontal: 75, marginTop: 15 }}>Filter</Text>
           </View>
-          <View style={{ marginRight: 60, marginTop: 15  }}>
-            <Text style={{ textAlign: 'center' }}>Urutkan</Text>
-          </View>
+          <TouchableOpacity activeOpacity = { .5 } onPress={() => setUrutData(urutData+1)}>
+            <View style={{ marginRight: 70, marginTop: 15, flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
+              <Text style={{ marginLeft: 50 }}>Urutkan</Text>
+              {statusUrutUp && <AntDesign style={{ marginLeft: 20, marginTop: 4 }} name="caretup" size={15} color="#46CDC6" />}
+              {statusUrutDown && <AntDesign style={{ marginLeft: 20 }} name="caretdown" size={15} color="#46CDC6" />}
+            </View>
+          </TouchableOpacity>
         </View>
         <ScrollView style={styles.scrollView}>
           {datFilterByCategory.map((DataFilter) => (
@@ -86,7 +105,7 @@ export default function ListProductByCategory({ route, navigation }) {
                   </View>
                   <View style={{ display: 'flex', justifyContent: 'flex-end', paddingLeft: 5 }}>
                     <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{DataFilter.name}</Text>
-                    <Text style={{ color: '#45C78D' }}>{DataFilter.statusProduct}</Text>
+                    <Text style={[DataFilter.statusProduct === 'Tersedia'? styles.statusProductTrue : styles.statusProductFalse]}>{DataFilter.statusProduct}</Text>
                     <Text>{DataFilter.address || 'Kosong dari Qore' }</Text>
                     <Text style={{ fontWeight: 'bold', color: '#ECB14C', fontSize: 15 }}>IRD {converNum(DataFilter.price)} / 7 Hari</Text>
                   </View>
@@ -119,6 +138,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column'
+  },
+  statusProductTrue: {
+    color: '#45C78D'
+  },
+  statusProductFalse: {
+    color: '#F85483'
   },
   boxFilter: {
     height: 50,
