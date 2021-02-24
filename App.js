@@ -15,6 +15,9 @@ import DetailProduct from './pages/detail_product'
 import ListDataProdukByCategory from './pages/list_product_by_category'
 import Basket from './pages/basket'
 import RegisterPage from './pages/register'
+import SortPage from './pages/sort'
+import FilterPage from './pages/filter'
+import SuccessregisPage from './pages/success_regis_page'
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 // import React, { useEffect } from 'react';
@@ -50,6 +53,10 @@ export default function App({navigation}) {
           component={RegisterPage}
           // options={{ tabBarVisible: false }}
         />
+        <Stack.Screen
+          name="SuccessRegis"
+          component={SuccessregisPage}
+        />
       </Stack.Navigator>
     )
   }
@@ -66,13 +73,22 @@ export default function App({navigation}) {
         <Stack.Screen
           name="List"
           component={ListDataProdukByCategory}
-          // headerMode={{ color: 'red' }}
           options={{ headerStyle: { backgroundColor: '#46CEC5' }, headerTintColor: 'white', headerTitleAlign: 'center', headerTitle: 'List Product' }}
         />
         <Stack.Screen
           name="Detail"
           component={DetailProduct}
           options={{ headerStyle: { backgroundColor: '#46CEC5' }, headerTintColor: 'white', headerTitleAlign: 'center', headerTitle: 'Detai Product' }}
+        />
+        <Stack.Screen
+          name="Sort"
+          component={SortPage}
+          options={{ headerStyle: { backgroundColor: '#46CEC5' }, headerTintColor: 'white', headerTitleAlign: 'center', headerTitle: 'Sort' }}
+        />
+        <Stack.Screen
+          name="Filter"
+          component={FilterPage}
+          options={{ headerStyle: { backgroundColor: '#46CEC5' }, headerTintColor: 'white', headerTitleAlign: 'center', headerTitle: 'Filter' }}
         />
       </Stack.Navigator>
     )
@@ -87,7 +103,7 @@ export default function App({navigation}) {
               <Tab.Screen
                 name="Login"
                 component={loginStackNavigator}
-                options={{ tabBarIcon: User, tabBarLabel: 'My Accont' }}
+                options={{ tabBarIcon: User, tabBarLabel: 'My Accont', tabBarColor: 'red' }}
               />
               <Tab.Screen
                 name="HomeTab"
@@ -112,7 +128,7 @@ export default function App({navigation}) {
                 component={RegisterPage}
                 options={{ tabBarVisible: false }}
               /> */}
-          </Tab.Navigator>
+            </Tab.Navigator>
           </NavigationContainer>
         </Provider>
       </qoreContext.context.Provider>

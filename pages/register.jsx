@@ -90,10 +90,10 @@ export default function RegisterPage({ navigation }) {
   function handleOnchangeNamaJl(NamaJalanText) {
     setNamJalan(NamaJalanText)
   }
-  //Makmur Jaya Betara JAMBI
-  function handleNextregis() {
+  
+  const handleNextregis =  async () => {
     let tampAlamat = `${namJalan}, ${Kel.name}, ${Kec.name}, ${Kab.name}, ${Prov.name}`
-    dispatch(submitRegister({
+    await dispatch(submitRegister({
       fullName: fullName,
       alamat: tampAlamat,
       phone: noTelfon,
@@ -101,7 +101,7 @@ export default function RegisterPage({ navigation }) {
       kodePoss: KodePoss,
       email: emailUser
     }))
-    navigation.navigate('Login')
+    navigation.navigate('SuccessRegis')
     setFullName('')
     setNotelfon('')
     setEmailUser('')

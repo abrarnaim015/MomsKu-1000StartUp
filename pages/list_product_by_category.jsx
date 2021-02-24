@@ -1,36 +1,45 @@
 import React, { useEffect } from 'react'
-import qoreContext from '../qoreContext'
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpacity } from 'react-native'
-import { AntDesign } from '@expo/vector-icons'
+import { useSelector } from 'react-redux'
+import qoreContext from '../qoreContext'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 // import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar, Image, TouchableOpacity } from 'react-native'
 
 export default function ListProductByCategory({ route, navigation }) {
-  const { byCategory } = route.params
   const { data: AllDataProductByCategory } = qoreContext.view("allProduct").useListRow()
+  const { byCategory } = route.params
+  const urutData = useSelector((state) => state.ValueSort)
   const [datFilterByCategory, setDatFilterByCategory] = React.useState([])
-  const [urutData, setUrutData] = React.useState(0)
-  const [statusUrutUp, setStatusUrutUp] = React.useState(false)
-  const [statusUrutDown, setStatusUrutDown] = React.useState(false)
+  const [filterCity, setFilterCity] = React.useState('')
+  const [filterBrand, setFilterBrand] = React.useState('')
   
   useEffect(() => {
     if(AllDataProductByCategory !== []) {
       filterData(AllDataProductByCategory)
-    } 
+    }
   }, [AllDataProductByCategory, byCategory, urutData])
   
   const filterData = (async(dataFilter) => {
     try {
-      const newData = await dataFilter.filter(indexData => indexData.nameCategory === byCategory)
-      if(urutData === 0) {
+      const newData =  dataFilter.filter(indexData => {
+        // console.log(indexData.categoryName, '<<<<<<<<')
+        if(indexData.nameCategory === byCategory ) {
+          if(!filterCity) {
+            return true
+          }
+          if(indexData.city.displayField === filterCity ) {
+            return true
+          }
+        }
+        // return indexData.nameCategory === byCategory
+        return false
+      })
+      if(urutData === '') {
         setDatFilterByCategory(newData)
-      } else if(urutData !== 0 && urutData%2 === 0) {
+      } else if(urutData !== 0 && urutData === 'Down') {
         await setDatFilterByCategory(newData.sort((a, b) => a.price - b.price))
-        setStatusUrutUp(true)
-        setStatusUrutDown(false)
-      } else if(urutData !== 0 && urutData%2 !== 0) {
+      } else if(urutData !== 0 && urutData === 'Up') {
         await setDatFilterByCategory(newData.sort((a, b) => b.price - a.price))
-        setStatusUrutUp(false)
-        setStatusUrutDown(true)
       }
     } catch (err) {
       console.log(err)
@@ -81,14 +90,17 @@ export default function ListProductByCategory({ route, navigation }) {
     <>
       <SafeAreaView style={styles.container}>
         <View style={styles.boxFilter}>
-          <View style={{ borderRightWidth: 1, borderColor: '#DADADA' }}>
-            <Text style={{ textAlign: 'center', marginHorizontal: 75, marginTop: 15 }}>Filter</Text>
-          </View>
-          <TouchableOpacity activeOpacity = { .5 } onPress={() => setUrutData(urutData+1)}>
+          <TouchableOpacity activeOpacity = { .5 } onPress={() => navigation.navigate('Filter')}>
+            <View style={{ borderRightWidth: 1, borderColor: '#DADADA', flexDirection: 'row' }}>
+              <MaterialCommunityIcons name="filter-outline" style={{ marginTop: 14, marginLeft: 55, marginRight: 5 }} size={22} color="black" />
+              <Text style={{ textAlign: 'center', marginTop: 15, marginBottom: 16, marginRight: 70 }}>Filter</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity = { .5 } onPress={() => navigation.navigate('Sort')}>
             <View style={{ marginRight: 70, marginTop: 15, flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
-              <Text style={{ marginLeft: 50 }}>Urutkan</Text>
-              {statusUrutUp && <AntDesign style={{ marginLeft: 20, marginTop: 4 }} name="caretup" size={15} color="#46CDC6" />}
-              {statusUrutDown && <AntDesign style={{ marginLeft: 20 }} name="caretdown" size={15} color="#46CDC6" />}
+              {urutData === 'Down' && <MaterialCommunityIcons style={{ marginTop: -1, marginRight: 5 }} name="sort-reverse-variant" size={20} color="black" />}
+              {urutData === 'Up' && <MaterialCommunityIcons style={{ marginTop: -1, marginRight: 5 }} name="sort-variant" size={20} color="black" />}
+              <Text>Urutkan</Text>
             </View>
           </TouchableOpacity>
         </View>

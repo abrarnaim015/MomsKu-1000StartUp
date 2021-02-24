@@ -13,9 +13,20 @@ const initicalStore = {
   Reg_Kab: [],
   Reg_Kec: [],
   Reg_Kel: [],
-  KodePossRegister: ''
+  KodePossRegister: '',
+  ValueSort: '',
+  CategoryProductFilter: '',
+  userRegisLogin: {
+    email: '',
+    password: ''
+  }
 }
 
+export function ReduxFilterCategory(valueCategory) {
+  return((dispatch) => {
+    dispatch({ type: 'SET_CATEGORY_PRODUCT', payload: valueCategory })
+  })
+}
 
 export function setRegisProv() {
   return((dispatch) => {
@@ -37,10 +48,15 @@ export function setRegisProv() {
   })
 }
 
+export function ReduxSetValueSort(valueSort) {
+  return((dispatch) => {
+    dispatch({ type: 'SET_VALUE_SORT', payload: valueSort })
+  })
+}
+
 export function setRegisKab(idProv) {
   return((dispatch) => {
     axios({
-
       url: `https://ibnux.github.io/data-indonesia/kabupaten/${idProv}.json`,
       method: 'GET'
     })
@@ -134,16 +150,17 @@ export function submitRegister(datNewUser) {
         alamat: datNewUser.alamat,
         ktpImage: 'test',
         profession: 'test',
-        phone: datNewUser.phone,
+        phone: Number(datNewUser.phone),
         password: datNewUser.password,
         kodePoss: datNewUser.kodePoss || 'fail',
         gender: 'test',
         email: datNewUser.email,
-        role: 'customer'
+        role: ['M6zdxP1YK2u49zA']
       }
     })
     .then((res) => {
-      Alert.alert('Success Register', datNewUser.fullName)
+      // Alert.alert('Success Register', datNewUser.fullName)
+      dispatch({ type: 'SET_EMAIL_PASS_USER_REGIS', payload: { email: datNewUser.email, password: datNewUser.password }})
     })
     .catch((err) => {
       Alert.alert('Someting Error', 'Sorry Mommy')
@@ -194,6 +211,15 @@ function Reducer(state = initicalStore, action) {
   }
   if(action.type === 'SET_KODE_POSS' ) {
     return { ...state, KodePossRegister: action.payload }
+  }
+  if(action.type === 'SET_VALUE_SORT' ) {
+    return { ...state, ValueSort: action.payload }
+  }
+  if(action.type === 'SET_CATEGORY_PRODUCT' ) {
+    return { ...state, CategoryProductFilter: action.payload }
+  }
+  if(action.type === 'SET_EMAIL_PASS_USER_REGIS' ) {
+    return { ...state, userRegisLogin: { email: action.payload.email, password: action.payload.password }}
   }
   return state
 }
