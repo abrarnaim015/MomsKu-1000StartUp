@@ -1,18 +1,25 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Text, StyleSheet, View, Image, ImageBackground, TouchableOpacity } from "react-native";
+import { ReduxFilterCategory } from '../store'
 
 export default function HomePage({ navigation }) {
+  const dispatch = useDispatch()
   const getUserName = useSelector((state) => state.dataUser)
   const nameUser = getUserName.data.fullName
   if(nameUser === '' || nameUser === null) {
     nameUser = 'Mamih'
   }
   
-  function getDataByCategory(categoryOf) {
-    navigation.navigate('List', {
-      byCategory: categoryOf
-    })
+  const getDataByCategory = async (categoryOf) => {
+    try {
+      await dispatch(ReduxFilterCategory(categoryOf))
+      navigation.navigate('List', {
+        byCategory: categoryOf
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
  
   return(

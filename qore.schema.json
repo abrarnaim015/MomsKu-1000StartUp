@@ -455,6 +455,18 @@
           "defaultValue": "Tersedia",
           "id": "statusProduct",
           "displayField": false
+        },
+        {
+          "name": "category Name",
+          "type": "lookup",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "categoryName",
+          "source": "category",
+          "destinations": ["name"],
+          "returnType": "text",
+          "multiple": false,
+          "displayField": false
         }
       ]
     }
@@ -712,6 +724,19 @@
           "deletionProtection": false,
           "defaultValue": "Tersedia",
           "id": "statusProduct",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "category Name",
+          "type": "lookup",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "categoryName",
+          "source": "category",
+          "destinations": ["name"],
+          "returnType": "text",
+          "multiple": false,
           "displayField": false,
           "design": null
         }
