@@ -15,7 +15,8 @@ export default function HomePage({ navigation }) {
     try {
       await dispatch(ReduxFilterCategory(categoryOf))
       navigation.navigate('List', {
-        byCategory: categoryOf
+        byCategory: categoryOf,
+        categoryFrom: 'Home'
       })
     } catch (err) {
       console.log(err)
@@ -54,12 +55,12 @@ export default function HomePage({ navigation }) {
                     source={require('../img/svgtopng/stroller.png')}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Pump')}>
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Breast Pump')}>
                   <Image
                     source={require('../img/svgtopng/pump.png')}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Food')}>
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Food Maker')}>
                   <Image
                     source={require('../img/svgtopng/food.png')}
                   />
@@ -78,12 +79,12 @@ export default function HomePage({ navigation }) {
                     source={require('../img/svgtopng/toys.png')}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Bath')}>
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Bath Tub')}>
                   <Image
                     source={require('../img/svgtopng/bath.png')}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Bad')}>
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => getDataByCategory('Bed')}>
                   <Image
                     source={require('../img/svgtopng/bed.png')}
                   />

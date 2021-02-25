@@ -467,6 +467,18 @@
           "returnType": "text",
           "multiple": false,
           "displayField": false
+        },
+        {
+          "name": "brand Name",
+          "type": "lookup",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "brandName",
+          "source": "brand",
+          "destinations": ["name"],
+          "returnType": "text",
+          "multiple": false,
+          "displayField": false
         }
       ]
     }
@@ -734,6 +746,19 @@
           "defaultValue": null,
           "id": "categoryName",
           "source": "category",
+          "destinations": ["name"],
+          "returnType": "text",
+          "multiple": false,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "brand Name",
+          "type": "lookup",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "brandName",
+          "source": "brand",
           "destinations": ["name"],
           "returnType": "text",
           "multiple": false,
