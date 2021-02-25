@@ -6,39 +6,88 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 // import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar, Image, TouchableOpacity } from 'react-native'
 
 export default function ListProductByCategory({ route, navigation }) {
+  
   const { data: AllDataProductByCategory } = qoreContext.view("allProduct").useListRow()
-  const { byCategory } = route.params
+  const { byCategory, categoryFrom, categoryFromUrut } = route.params
+  
   const urutData = useSelector((state) => state.ValueSort)
+  const valueFilter = useSelector((state) => state.DataFilter)
+  console.log(valueFilter, '<<<<<<<')
   const [datFilterByCategory, setDatFilterByCategory] = React.useState([])
   const [filterCity, setFilterCity] = React.useState('')
   const [filterBrand, setFilterBrand] = React.useState('')
+  const [filterFrom, setFilterFrom] = React.useState('')
+  const [statusUrutData, setStatusUrutData] = React.useState('')
+  const [filterFromUrut, setFilterUrut] = React.useState('')
+  // const [filterRangeharga, setFilterRangeHarga] = React.useState({
+  //   min: '',
+  //   max: ''
+  // })
   
   useEffect(() => {
     if(AllDataProductByCategory !== []) {
+      setFilterFrom(categoryFrom)
+      setFilterUrut(categoryFromUrut)
       filterData(AllDataProductByCategory)
     }
-  }, [AllDataProductByCategory, byCategory, urutData])
+  }, [AllDataProductByCategory, byCategory, urutData, filterCity, filterBrand, valueFilter, categoryFrom, filterFrom, statusUrutData, categoryFromUrut, filterFromUrut])
   
   const filterData = (async(dataFilter) => {
     try {
-      const newData =  dataFilter.filter(indexData => {
-        // console.log(indexData.categoryName, '<<<<<<<<')
-        if(indexData.nameCategory === byCategory ) {
-          if(!filterCity) {
-            return true
-          }
-          if(indexData.city.displayField === filterCity ) {
-            return true
-          }
+      const newData = await  dataFilter.filter(indexData => {
+        // console.log(indexData.brandName === filterBrand, '<<<<<')
+        if(filterFrom === 'Home' ) {
+          setFilterCity('')
+          setFilterBrand('')
+          setStatusUrutData('')
+          // setFilterRangeHarga({
+          //   min: '',
+          //   max: ''
+          // })
+        } else if (filterFrom === 'Filter' ) {
+          setFilterCity(valueFilter.City)
+          setFilterBrand(valueFilter.Brand)
+          // setFilterRangeHarga({
+          //   min: valueFilter.RaRangeHargaA,
+          //   max: valueFilter.RaRangeHargaB
+          // })
         }
-        // return indexData.nameCategory === byCategory
+        if(filterFromUrut === 'Urut') {
+          setStatusUrutData(urutData)
+        }
+        if(indexData.categoryName === byCategory ) {
+          if(!filterCity) {
+            if(!filterBrand) {
+              return true
+            }
+            if(indexData.brandName === filterBrand) {
+              return true
+            }
+          } else if(!filterBrand) {
+            if(!filterCity) {
+              return true
+            }
+            if(indexData.city.displayField === filterCity) {
+              return true
+            }
+          }
+          if(indexData.city.displayField === filterCity) {
+            if(!filterBrand) {
+              return true
+            }
+            if(indexData.brandName === filterBrand ) {
+              return true
+            }
+          }
+
+        }
         return false
       })
-      if(urutData === '') {
+      if(statusUrutData === '') {
         setDatFilterByCategory(newData)
-      } else if(urutData !== 0 && urutData === 'Down') {
+      } else if(statusUrutData !== 0 && statusUrutData === 'Down') {
         await setDatFilterByCategory(newData.sort((a, b) => a.price - b.price))
-      } else if(urutData !== 0 && urutData === 'Up') {
+      } else if(statusUrutData !== 0 && statusUrutData === 'Up') {
         await setDatFilterByCategory(newData.sort((a, b) => b.price - a.price))
       }
     } catch (err) {
@@ -69,17 +118,20 @@ export default function ListProductByCategory({ route, navigation }) {
     return finalOutput
   }
 
-  // function cekDate(start, end) {
-  //   const dateStart = new Date(start)
-  //   const dateEnd = new Date(end)
-  //   const nowDate = new Date()
-  //   let output = nowDate > dateStart && nowDate < dateEnd
-  //   if(output) {
-  //     return 'Tersedia'
-  //   } else {
-  //     return 'Tidak Tersedia'
-  //   }
-  // }
+
+
+  function openFilter() {
+    setFilterCity('')
+    setFilterBrand('')
+    setFilterFrom('')
+    // setFilterRangeHarga({
+    //   min: '',
+    //   max: ''
+    // })
+    navigation.navigate('Filter' , { 
+      FilterHome: byCategory
+    })
+  }
 
   function getDataDetail(dataDetail, harga) {
     navigation.navigate('Detail', { dataDetail, harga })
@@ -90,7 +142,7 @@ export default function ListProductByCategory({ route, navigation }) {
     <>
       <SafeAreaView style={styles.container}>
         <View style={styles.boxFilter}>
-          <TouchableOpacity activeOpacity = { .5 } onPress={() => navigation.navigate('Filter')}>
+          <TouchableOpacity activeOpacity = { .5 } onPress={() => openFilter()}>
             <View style={{ borderRightWidth: 1, borderColor: '#DADADA', flexDirection: 'row' }}>
               <MaterialCommunityIcons name="filter-outline" style={{ marginTop: 14, marginLeft: 55, marginRight: 5 }} size={22} color="black" />
               <Text style={{ textAlign: 'center', marginTop: 15, marginBottom: 16, marginRight: 70 }}>Filter</Text>
@@ -98,8 +150,9 @@ export default function ListProductByCategory({ route, navigation }) {
           </TouchableOpacity>
           <TouchableOpacity activeOpacity = { .5 } onPress={() => navigation.navigate('Sort')}>
             <View style={{ marginRight: 70, marginTop: 15, flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
-              {urutData === 'Down' && <MaterialCommunityIcons style={{ marginTop: -1, marginRight: 5 }} name="sort-reverse-variant" size={20} color="black" />}
-              {urutData === 'Up' && <MaterialCommunityIcons style={{ marginTop: -1, marginRight: 5 }} name="sort-variant" size={20} color="black" />}
+              {statusUrutData === '' && <MaterialCommunityIcons style={{ marginTop: -1, marginRight: 5 }} name="text-subject" size={20} color="black" />}
+              {statusUrutData === 'Down' && <MaterialCommunityIcons style={{ marginTop: -1, marginRight: 5 }} name="sort-reverse-variant" size={20} color="black" />}
+              {statusUrutData === 'Up' && <MaterialCommunityIcons style={{ marginTop: -1, marginRight: 5 }} name="sort-variant" size={20} color="black" />}
               <Text>Urutkan</Text>
             </View>
           </TouchableOpacity>
@@ -116,9 +169,9 @@ export default function ListProductByCategory({ route, navigation }) {
                     />
                   </View>
                   <View style={{ display: 'flex', justifyContent: 'flex-end', paddingLeft: 5 }}>
-                    <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{DataFilter.name}</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{DataFilter.brandName}</Text>
                     <Text style={[DataFilter.statusProduct === 'Tersedia'? styles.statusProductTrue : styles.statusProductFalse]}>{DataFilter.statusProduct}</Text>
-                    <Text>{DataFilter.address || 'Kosong dari Qore' }</Text>
+                    <Text>{DataFilter.city.displayField || 'Kosong dari Qore' }</Text>
                     <Text style={{ fontWeight: 'bold', color: '#ECB14C', fontSize: 15 }}>IRD {converNum(DataFilter.price)} / 7 Hari</Text>
                   </View>
                 </View>
@@ -173,3 +226,15 @@ const styles = StyleSheet.create({
     elevation: 3,
   }
 })
+
+  // function cekDate(start, end) {
+  //   const dateStart = new Date(start)
+  //   const dateEnd = new Date(end)
+  //   const nowDate = new Date()
+  //   let output = nowDate > dateStart && nowDate < dateEnd
+  //   if(output) {
+  //     return 'Tersedia'
+  //   } else {
+  //     return 'Tidak Tersedia'
+  //   }
+  // }

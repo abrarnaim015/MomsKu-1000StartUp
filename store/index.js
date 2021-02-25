@@ -19,7 +19,14 @@ const initicalStore = {
   userRegisLogin: {
     email: '',
     password: ''
-  }
+  },
+  DataFilter: {}
+}
+
+export function SetFilterProduct(valueFilter) {
+  return((dispatch) => {
+    dispatch({ type: 'SET_VALUE_FILTER', payload: valueFilter })
+  })
 }
 
 export function ReduxFilterCategory(valueCategory) {
@@ -220,6 +227,9 @@ function Reducer(state = initicalStore, action) {
   }
   if(action.type === 'SET_EMAIL_PASS_USER_REGIS' ) {
     return { ...state, userRegisLogin: { email: action.payload.email, password: action.payload.password }}
+  }
+  if(action.type === 'SET_VALUE_FILTER' ) {
+    return { ...state, DataFilter: action.payload }
   }
   return state
 }

@@ -4,11 +4,10 @@ import { useDispatch } from 'react-redux'
 import { setUserDataLogin } from '../store'
 import qoreContext from "../qoreContext";
 import SyncStorage from 'sync-storage';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LoginPage({navigation}) {
   const dispatch = useDispatch()
-  const client = qoreContext.useClient();
+  const client = qoreContext.useClient()
   
   const Separator = () => (
     <View style={styles.separator} />
@@ -32,18 +31,6 @@ function LoginPage({navigation}) {
       [key]: value
     })
   }
-
-  // function converName(em) {
-  //   let name = ''
-  //   for(let i = 0; i < em.length; i++) {
-  //     if(em[i] !== '@') {
-  //       name += em[i]
-  //     } else if(em[i] === '@') {
-  //       break
-  //     }
-  //   }
-  //   return name
-  // }
   
   const handleSubmitLogin =  async () => {
     try {

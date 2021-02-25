@@ -11,7 +11,9 @@ export default function SortPage({ navigation }) {
   const reduxValueSort = async () => {
     try {
       await dispatch(ReduxSetValueSort(valueSort))
-      navigation.navigate('List')
+      navigation.navigate('List', {
+        categoryFromUrut: 'Urut'
+      })
     } catch (err) {
       console.log(err)
     }

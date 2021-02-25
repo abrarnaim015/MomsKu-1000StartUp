@@ -73,6 +73,7 @@ declare module "@feedloop/qore-client" {
     city: CityTableRow;
     statusProduct: string;
     categoryName: string;
+    brandName: string;
   };
 
   type AllProductViewRow = {
@@ -92,6 +93,7 @@ declare module "@feedloop/qore-client" {
       endDate: Date;
       statusProduct: string;
       categoryName: string;
+      brandName: string;
     };
     write: {
       name: string;
