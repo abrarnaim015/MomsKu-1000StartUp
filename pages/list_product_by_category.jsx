@@ -12,7 +12,7 @@ export default function ListProductByCategory({ route, navigation }) {
   
   const urutData = useSelector((state) => state.ValueSort)
   const valueFilter = useSelector((state) => state.DataFilter)
-  console.log(valueFilter, '<<<<<<<')
+  
   const [datFilterByCategory, setDatFilterByCategory] = React.useState([])
   const [filterCity, setFilterCity] = React.useState('')
   const [filterBrand, setFilterBrand] = React.useState('')
@@ -35,7 +35,6 @@ export default function ListProductByCategory({ route, navigation }) {
   const filterData = (async(dataFilter) => {
     try {
       const newData = await  dataFilter.filter(indexData => {
-        // console.log(indexData.brandName === filterBrand, '<<<<<')
         if(filterFrom === 'Home' ) {
           setFilterCity('')
           setFilterBrand('')

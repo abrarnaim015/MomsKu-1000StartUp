@@ -189,6 +189,37 @@ export function getKodePoss(dataAlamat) {
   })
 }
 
+export function deleteProductInCart(idProducCart) {
+  axios({
+    url: `https://prod-qore-app.qorebase.io/ywboLmpR6nwJm3E/allBasket/rows/${idProducCart}`,
+    method: 'DELETE'
+  })
+  .then((res) => {
+    console.log(res)
+    Alert.alert('Hi Moms', 'You delete Success')
+  })
+  .catch((err) => {
+    Alert.alert('Hi Moms', 'Someting Error')
+    console.log(err)
+  })
+}
+
+export function insertProductToCart(productInsert) {
+  axios({
+    url: ``,
+    method: 'POST',
+    data: productInsert
+  })
+  .then((res) => {
+    console.log(res)
+    Alert.alert('Hi Moms', 'You Product Success')
+  })
+  .catch((err) => {
+    Alert.alert('Hi Moms', 'Someting Error')
+    console.log(err)
+  })
+}
+
 
 function Reducer(state = initicalStore, action) {
   if(action.type === 'SET_USER_LOGIN') {

@@ -141,7 +141,7 @@ export default function FilterPage({ navigation, route }) {
           <Text>Max</Text>
         </View>
       </View>
-      <View style={{ marginTop: '10%' }}>
+      <View style={{ marginTop: '45%', marginBottom: 50 }}>
         <TouchableOpacity style={styles.button} onPress={() => handleSubmitFilter()} >
             <Text style={styles.text}>TERAPKAN</Text>
         </TouchableOpacity>

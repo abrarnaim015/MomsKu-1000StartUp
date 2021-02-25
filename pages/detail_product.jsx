@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native'
+import { insertProductToCart } from '../store'
 
-export default function DetailProduct({ route }) {
+export default function DetailProduct({ route, navigation }) {
   const { dataDetail, harga } = route.params
   const [DataDetail, setDataDetail] = React.useState({})
   const [statusProduct, setStatusProduct] = React.useState('')
@@ -17,7 +18,13 @@ export default function DetailProduct({ route }) {
     }
   }, [dataDetail])
 
-
+  const submitInsertProducttoCart = async () => {
+    try {
+      await insertProductToCart(dataDetail)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   // function cekDate(start, end) {
   //   const dateStart = new Date(start)
   //   const dateEnd = new Date(end)
@@ -40,11 +47,13 @@ export default function DetailProduct({ route }) {
             </View>
           </View>
           <View style={{ marginTop: 5, marginBottom: 10 }}>
-            <Image
-              // source={require('../img/content/2.jpg')}
-              source={{uri: DataDetail.image}}
-              style={{ width: 350, height: 350 }}
-            />
+            <TouchableOpacity activeOpacity = { .5 } onPress={() => navigation.navigate('Picture', { Picture: DataDetail.image })} >
+              <Image
+                // source={require('../img/content/2.jpg')}
+                source={{uri: DataDetail.image}}
+                style={{ width: 350, height: 350 }}
+              />
+            </TouchableOpacity>
           </View>
           <View>
             <View style={{ justifyContent: 'flex-start', marginRight: 100 }}>
@@ -67,7 +76,7 @@ export default function DetailProduct({ route }) {
               <View style={{ backgroundColor: 'yellow', height: 30 }}></View>
             </View>
             <View>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button} onPress={() => submitInsertProducttoCart()}>
                   <Text style={styles.text}>BOOK</Text>
               </TouchableOpacity>
             </View>
