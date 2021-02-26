@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native'
 import { insertProductToCart } from '../store'
+import { useSelector } from 'react-redux'
+// import { FontAwesome } from '@expo/vector-icons';
 
 export default function DetailProduct({ route, navigation }) {
   const { dataDetail, harga } = route.params
   const [DataDetail, setDataDetail] = React.useState({})
   const [statusProduct, setStatusProduct] = React.useState('')
   const [styleStatus, setStyleStatus] = React.useState(true)
+  const userLogin = useSelector((state) => state.dataUser)
+
+  // console.log(dataDetail.id, '<<<<<YYYYYYy')
 
   useEffect(() => {
     setDataDetail(dataDetail)
@@ -20,7 +25,19 @@ export default function DetailProduct({ route, navigation }) {
 
   const submitInsertProducttoCart = async () => {
     try {
-      await insertProductToCart(dataDetail)
+      const IDMEMBER = [userLogin.data.id]
+      const IDPRODUCT = [dataDetail.id]
+      const payloadCart = {
+        name: dataDetail.name,
+        totalHari: Math.floor((Math.random() * 10) + 1),
+        ongkir: Math.floor((Math.random() * 10000) + 1),
+        allTotal: Math.floor((Math.random() * 100000) + 1),
+        totalHargaSewa: dataDetail.price * Math.floor((Math.random() * 10) + 1),
+        idMembar: IDMEMBER,
+        idProduct: IDPRODUCT
+      }
+      // console.log(payloadCart, '<<<<<XXX')
+      await insertProductToCart(payloadCart)
     } catch (err) {
       console.log(err)
     }
@@ -56,11 +73,18 @@ export default function DetailProduct({ route, navigation }) {
             </TouchableOpacity>
           </View>
           <View>
-            <View style={{ justifyContent: 'flex-start', marginRight: 100 }}>
+            <View>
               <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{DataDetail.name}</Text>
               <Text>{DataDetail.address || 'Kosong dari Qore' }</Text>
               <Text style={{ color: '#E79933', fontSize: 20, fontWeight: 'bold' }}>IRD {harga} / 7 Days</Text>
             </View>
+              {/* <View>
+                <View style={{ marginRight: 100, flexDirection: 'row' , justifyContent: 'space-between' }}>
+                  <TouchableOpacity activeOpacity = { .5 }>
+                    <FontAwesome style={{ marginVertical: 15, marginHorizontal: 10}} name="whatsapp" size={30} color="#55D142" />
+                  </TouchableOpacity>
+                </View>
+            </View> */}
           </View>
           <View style={{ marginTop: 30 }}>
             <View style={{ flexDirection: 'row', marginVertical: 10 }}>

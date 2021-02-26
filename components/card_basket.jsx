@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import qoreContext from "../qoreContext";
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
@@ -6,7 +6,7 @@ import { deleteProductInCart } from '../store'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const CardBasket = ({ basketId }) => {
-  const {  data: dataProduct, status, error  } = qoreContext.view('allProduct').useGetRow(basketId)
+  const {  data: dataProduct } = qoreContext.view('allProduct').useGetRow(basketId)
   const { data: AllDataBasket } = qoreContext.view("allBasket").useListRow()
 
   if(!dataProduct) {
@@ -16,15 +16,6 @@ const CardBasket = ({ basketId }) => {
       </View>
     )
   }
-
-  // const [dataProductState, setDateProductState] = React.useState([])
-
-  // useEffect(() => {
-  //   if(dataProduct) {
-  //     setDateProductState(dataProduct)
-  //   }
-  // }, [dataProduct, dataProductState])
-
 
   const submitDelete = async (idProductDelete) => {
     const dataRow = await AllDataBasket.find((idRow) => idRow.nameProduct === idProductDelete)

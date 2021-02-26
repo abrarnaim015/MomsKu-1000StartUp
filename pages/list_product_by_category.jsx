@@ -32,9 +32,39 @@ export default function ListProductByCategory({ route, navigation }) {
     }
   }, [AllDataProductByCategory, byCategory, urutData, filterCity, filterBrand, valueFilter, categoryFrom, filterFrom, statusUrutData, categoryFromUrut, filterFromUrut])
   
+  // const filteredData = React.useMemo(() => AllDataProductByCategory.filter((indexProduct) => {
+  //   if(indexData.categoryName === byCategory ) {
+  //     if(!filterCity) {
+  //       if(!filterBrand) {
+  //         return true
+  //       }
+  //       if(indexData.brandName === filterBrand) {
+  //         return true
+  //       }
+  //     } else if(!filterBrand) {
+  //       if(!filterCity) {
+  //         return true
+  //       }
+  //       if(indexData.city.displayField === filterCity) {
+  //         return true
+  //       }
+  //     }
+  //     if(indexData.city.displayField === filterCity) {
+  //       if(!filterBrand) {
+  //         return true
+  //       }
+  //       if(indexData.brandName === filterBrand ) {
+  //         return true
+  //       }
+  //     }
+
+  //   }
+  //   return false
+  // }), [])
+
   const filterData = (async(dataFilter) => {
     try {
-      const newData = await  dataFilter.filter(indexData => {
+      const newData = await  dataFilter.filter((indexData) => {
         if(filterFrom === 'Home' ) {
           setFilterCity('')
           setFilterBrand('')
@@ -168,7 +198,8 @@ export default function ListProductByCategory({ route, navigation }) {
                     />
                   </View>
                   <View style={{ display: 'flex', justifyContent: 'flex-end', paddingLeft: 5 }}>
-                    <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{DataFilter.brandName}</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{DataFilter.name}</Text>
+                    <Text>{DataFilter.brandName}</Text> 
                     <Text style={[DataFilter.statusProduct === 'Tersedia'? styles.statusProductTrue : styles.statusProductFalse]}>{DataFilter.statusProduct}</Text>
                     <Text>{DataFilter.city.displayField || 'Kosong dari Qore' }</Text>
                     <Text style={{ fontWeight: 'bold', color: '#ECB14C', fontSize: 15 }}>IRD {converNum(DataFilter.price)} / 7 Hari</Text>

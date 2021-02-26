@@ -5,7 +5,6 @@ import SyncStorage from 'sync-storage'
 
 export default function ProfilePage({ navigation }) {
   const dataUser = useSelector((state) => state.dataUser)
-  console.log(dataUser, '<<<<<<<')
 
   if(!dataUser) {
     return (

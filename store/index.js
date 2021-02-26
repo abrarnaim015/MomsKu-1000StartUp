@@ -206,9 +206,17 @@ export function deleteProductInCart(idProducCart) {
 
 export function insertProductToCart(productInsert) {
   axios({
-    url: ``,
+    url: `https://prod-qore-app.qorebase.io/ywboLmpR6nwJm3E/allBasket/rows`,
     method: 'POST',
-    data: productInsert
+    data: {
+      name: productInsert.name,
+      totalHari: productInsert.totalHari,
+      ongkir: productInsert.ongkir,
+      allTotal: productInsert.allTotal,
+      totalHargaSewa: productInsert.totalHargaSewa,
+      idMembar: productInsert.idMembar,
+      idProduct: productInsert.idProduct
+    }
   })
   .then((res) => {
     console.log(res)

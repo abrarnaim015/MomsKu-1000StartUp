@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { View, Text, StyleSheet, StatusBar, SafeAreaView, ScrollView, Button, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native'
 import CardBasket from '../components/card_basket'
 import qoreContext from '../qoreContext'
+// import { FontAwesome } from '@expo/vector-icons';
 
-export default function Basket() {
+
+export default function Basket({ navigation }) {
 
   const { data: dataUser } = useSelector((state) => state.dataUser)
   const { data: AllDataBasket } = qoreContext.view("allBasket").useListRow()
@@ -12,6 +14,7 @@ export default function Basket() {
   const [dataBasket, setDataBasket] = React.useState([])
 
   useEffect(() => {
+    setDataBasket([])
     if(AllDataBasket) {
       setDataBasket(AllDataBasket)
     }
@@ -55,9 +58,10 @@ export default function Basket() {
             <Text style={{ fontWeight: 'bold', textAlign: 'right' }}>IDR 525,000</Text>
           </View>
         </View>
-        <View style={{ marginBottom: 10}}>
-          <TouchableOpacity style={styles.button} >
-              <Text style={styles.text}>LANJUT PEMBAYARAN</Text>
+        <View style={{ marginBottom: 10 }}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeTab', {screen: 'WhatsApp'})}>
+              <Text style={styles.text}>LANJUT ORDER</Text>
+              {/* <FontAwesome style={{ marginVertical: 15, marginHorizontal: 10}} name="whatsapp" size={30} color="#55D142" /> */}
           </TouchableOpacity>
         </View>
       </SafeAreaView>

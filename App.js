@@ -22,6 +22,7 @@ import RegisterV2 from './pages/register_v2'
 import RegisterAlamatPage from './pages/register_alamat'
 import RegisPasswordPage from './pages/register_password'
 import ProfilePage from './pages/profile'
+import WhatsApp from './pages/whatsApp'
 // import RegisterPage from './pages/register'
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -107,6 +108,11 @@ export default function App({navigation}) {
           name="Picture"
           component={SharePicture}
           options={{ headerStyle: { backgroundColor: '#46CEC5' }, headerTintColor: 'white', headerTitleAlign: 'center', headerTitle: 'Share Picture' }}
+        />
+        <Stack.Screen
+          name="WhatsApp"
+          component={WhatsApp}
+          options={{ headerStyle: { backgroundColor: '#46CEC5' }, headerTintColor: 'white', headerTitleAlign: 'center', headerTitle: 'WhatsApp' }}
         />
       </Stack.Navigator>
     )
