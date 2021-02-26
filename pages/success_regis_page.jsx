@@ -9,7 +9,6 @@ export default function SuccessRegisPage({ navigation }) {
   const dispatch = useDispatch()
   const client = qoreContext.useClient()
   const emailAndpass = useSelector((state) => state.userRegisLogin)
-  console.log(emailAndpass, '<<<<<')
 
   const getDataUserLogin = async () => {
     const { data: user } = await client.project.axios.get(`/me`);

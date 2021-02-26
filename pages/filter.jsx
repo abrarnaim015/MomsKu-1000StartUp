@@ -127,6 +127,7 @@ export default function FilterPage({ navigation, route }) {
             value={filterValue.RangeHargaA}
             placeholder={'Min Harga'}
             keyboardType={'numeric'}
+            editable={false}
           />
           <TextInput
             style={styles.textInput}
@@ -134,6 +135,7 @@ export default function FilterPage({ navigation, route }) {
             value={filterValue.RangeHargaB}
             placeholder={'Max harga'}
             keyboardType={'numeric'}
+            editable={false}
           />
         </View>
         <View style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-evenly' }}>
@@ -141,7 +143,7 @@ export default function FilterPage({ navigation, route }) {
           <Text>Max</Text>
         </View>
       </View>
-      <View style={{ marginTop: '10%' }}>
+      <View style={{ marginTop: '45%', marginBottom: 50 }}>
         <TouchableOpacity style={styles.button} onPress={() => handleSubmitFilter()} >
             <Text style={styles.text}>TERAPKAN</Text>
         </TouchableOpacity>
@@ -180,12 +182,22 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: 'bold'
   },
+  // textInput: {
+  //   height: 40,
+  //   width: 150,
+  //   borderRadius: 5,
+  //   backgroundColor: "#F4F4F4",
+  //   textAlign: 'center',
+  //   marginBottom: 10
+  // },
   textInput: {
-      height: 40,
-      width: 150,
-      borderRadius: 5,
-      backgroundColor: "#F4F4F4",
-      textAlign: 'center',
-      marginBottom: 10
+    height: 40,
+    width: 150,
+    borderRadius: 5,
+    backgroundColor: "#F4F4F4",
+    textAlign: 'center',
+    marginBottom: 10,
+    borderColor: 'red',
+    borderWidth: 1
   }
 })

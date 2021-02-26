@@ -1,18 +1,25 @@
 import React from 'react'
 import qoreContext from "../qoreContext";
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { AntDesign } from '@expo/vector-icons';
+import { deleteProductInCart } from '../store'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const CardBasket = ({ basketId }) => {
-  const {  data: dataProduct, status, error  } = qoreContext
-  .view('allProduct')
-  .useGetRow(basketId)
+  const {  data: dataProduct } = qoreContext.view('allProduct').useGetRow(basketId)
+  const { data: AllDataBasket } = qoreContext.view("allBasket").useListRow()
 
   if(!dataProduct) {
     return (
       <View>
-        <Text>Loading...</Text>
+        <Text style={{ textAlign: 'center', fontSize: 10 }}>Loading...</Text>
       </View>
     )
+  }
+
+  const submitDelete = async (idProductDelete) => {
+    const dataRow = await AllDataBasket.find((idRow) => idRow.nameProduct === idProductDelete)
+    await deleteProductInCart(dataRow.id)
   }
 
   function converNum(num) {
@@ -38,16 +45,20 @@ const CardBasket = ({ basketId }) => {
     return finalOutput
   }
 
-  function hargaPerPick(priceD, jumHari) {
-    let pricePDay = Math.ceil(priceD/7)
-    let output = pricePDay * jumHari
-    let finalOutput = converNum(output)
-    return finalOutput
+  function rendomeDay() {
+    const numRendom = Math.floor((Math.random() * 10) + 1);
+    return numRendom
   }
+  // function hargaPerPick(priceD, jumHari) {
+  //   let pricePDay = Math.ceil(priceD/7)
+  //   let output = pricePDay * jumHari
+  //   let finalOutput = converNum(output)
+  //   return finalOutput
+  // }
 
   return (
     <>
-      <View>
+      <View style={{ backgroundColor: '#ffff' }}>
         <View style={{ flexDirection: 'row', padding: 5, marginHorizontal: 15, marginVertical: 20 }}>
           <View style={{ display: 'flex', justifyContent: 'center'}}>
             <Image
@@ -57,9 +68,14 @@ const CardBasket = ({ basketId }) => {
           </View>
           <View style={{ display: 'flex', justifyContent: 'flex-end', paddingLeft: 5 }}>
             <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{dataProduct.name}</Text>
-            <Text>IRD {hargaPerPick(dataProduct.price, dataProduct.total_Hari)}</Text>
-            <View style={{ width: 80, height: 30, backgroundColor: '#F4F4F4', marginTop: 10 }}>
-              <Text style={{ textAlign: 'center', marginTop: 5 }}>4 Hari</Text>
+            <Text style={{ color: '#45C78D' }}>IRD {converNum(dataProduct.price)}</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ width: 80, height: 30, backgroundColor: '#F4F4F4', marginTop: 10, borderRadius: 10 }}>
+                <Text style={{ textAlign: 'center', marginTop: 5 }}>{rendomeDay()} Hari     <AntDesign name="caretdown" size={10} color="black" /></Text>
+              </View>
+              <TouchableOpacity activeOpacity={ .5 } style={{ justifyContent: 'flex-end' }} onPress={() => submitDelete(dataProduct.id)} >
+                  <MaterialCommunityIcons name="delete-circle-outline" style={{ marginLeft: 85 }} size={24} color="#F97897" />
+              </TouchableOpacity>
             </View>
           </View>
         </View>

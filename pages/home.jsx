@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Text, StyleSheet, View, Image, ImageBackground, TouchableOpacity } from "react-native";
 import { ReduxFilterCategory } from '../store'
@@ -10,6 +10,10 @@ export default function HomePage({ navigation }) {
   if(nameUser === '' || nameUser === null) {
     nameUser = 'Mamih'
   }
+
+  useEffect(() => {
+    
+  }, [])
   
   const getDataByCategory = async (categoryOf) => {
     try {
