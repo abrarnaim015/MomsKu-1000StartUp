@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "momsqu",
-    "slug": "momsqu",
+    "name": "momsku",
+    "slug": "momsku",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,6 +20,8 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
+      "package": "com.momsku.momsku",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

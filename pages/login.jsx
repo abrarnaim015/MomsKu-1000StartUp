@@ -36,25 +36,25 @@ function LoginPage({ navigation }) {
     try {
       Keyboard.dismiss()
       if(dataLogin.Email === '' && dataLogin.Password === '') {
-        // Alert.alert(
-        //   "Hi Moms",
-        //   "Sorry Your Email and Password do not empty"
-        // )
+        Alert.alert(
+          "Hi Moms",
+          "Sorry Your Email and Password do not empty"
+        )
 
         // ==============
-        const token = await client.authenticate(
-          'yura@momsku.com',
-          'momsku'
-        );
-        SyncStorage.set('token', token);
-        await getDataUserLogin()
-        navigation.navigate('HomeTab', { 
-          screen: 'Home'
-        })
-        setDataLogin({
-          Email: '',
-          Password: ''
-        })
+        // const token = await client.authenticate(
+        //   'abrar@momsku.com',
+        //   'momsku'
+        // );
+        // SyncStorage.set('token', token);
+        // await getDataUserLogin()
+        // navigation.navigate('HomeTab', { 
+        //   screen: 'Home'
+        // })
+        // setDataLogin({
+        //   Email: '',
+        //   Password: ''
+        // })
 
         // ===============
 
