@@ -119,7 +119,7 @@ export default function FilterPage({ navigation, route }) {
             />
           ))}
         </Picker>
-        <Text style={ styles.sizeText }>Range Harga</Text>
+        {/* <Text style={ styles.sizeText }>Range Harga</Text>
         <View style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
           <TextInput
             style={styles.textInput}
@@ -137,13 +137,13 @@ export default function FilterPage({ navigation, route }) {
             keyboardType={'numeric'}
             editable={false}
           />
-        </View>
-        <View style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-evenly' }}>
+        </View> */}
+        {/* <View style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-evenly' }}>
           <Text style={{ marginRight: 75 }}>Min</Text>
           <Text>Max</Text>
-        </View>
+        </View> */}
       </View>
-      <View style={{ marginTop: '45%', marginBottom: 50 }}>
+      <View style={{ marginTop: '75%', marginBottom: 50 }}>
         <TouchableOpacity style={styles.button} onPress={() => handleSubmitFilter()} >
             <Text style={styles.text}>TERAPKAN</Text>
         </TouchableOpacity>

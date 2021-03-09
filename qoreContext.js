@@ -11,7 +11,7 @@ export const client = new QoreClient({
   ...config, 
   getToken: () => {
     const token = SyncStorage.get('token')
-    console.log(token, '<<<<<<< TOKEN')
+    // console.log(token, '<<<<<<< TOKEN')
     return token
   }, 
   onError: console.log 
